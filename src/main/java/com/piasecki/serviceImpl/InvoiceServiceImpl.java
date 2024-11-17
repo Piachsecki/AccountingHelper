@@ -4,6 +4,7 @@ import com.piasecki.domain.Invoice;
 import com.piasecki.repository.InvoiceRepository;
 import com.piasecki.service.InvoiceService;
 import lombok.AllArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

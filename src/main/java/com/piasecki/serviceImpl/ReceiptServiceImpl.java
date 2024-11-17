@@ -4,9 +4,11 @@ import com.piasecki.domain.Receipt;
 import com.piasecki.repository.ReceiptRepository;
 import com.piasecki.service.ReceiptService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 
 @AllArgsConstructor
+@Service
 public class ReceiptServiceImpl implements ReceiptService {
     private ReceiptRepository receiptRepository;
 
