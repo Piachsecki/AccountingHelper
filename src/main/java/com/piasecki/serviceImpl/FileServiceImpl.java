@@ -50,23 +50,26 @@ public class FileServiceImpl implements FileService {
             }
             uploadFileToMilo("invoices", file.getOriginalFilename(), file.getInputStream(), file.getContentType());
 
-            Path destination = getPath(file);
+            Path destination = addFileToProjectPath(file);
 
             InvoiceDTO invoiceDTO = ocrInvoiceFileToObject(destination);
 
+            deleteFile(destination);
 
             return invoiceDTO;
-
         } catch (IOException e) {
             throw new RuntimeException("Store exception");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-//        return new InvoiceDTO();
     }
 
-    private static @NotNull Path getPath(MultipartFile file) throws IOException {
+    public static void deleteFile(Path filePath) throws IOException {
+        Files.deleteIfExists(filePath); // Deletes file if it exists
+    }
+
+
+    private static @NotNull Path addFileToProjectPath(MultipartFile file) throws IOException {
         Path rootDir = Paths.get("src", "main", "resources", "static").toAbsolutePath().normalize();
         Path destination = rootDir.resolve(file.getOriginalFilename()).normalize().toAbsolutePath();
         Files.copy(file.getInputStream(), destination);
