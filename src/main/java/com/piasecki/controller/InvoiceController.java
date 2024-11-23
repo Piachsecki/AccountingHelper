@@ -1,6 +1,7 @@
 package com.piasecki.controller;
 
 import com.piasecki.domain.User;
+import com.piasecki.dto.InvoiceDTO;
 import com.piasecki.service.FileService;
 import com.piasecki.service.InvoiceService;
 import com.piasecki.service.UserService;
@@ -21,8 +22,9 @@ public class InvoiceController {
     private final FileService fileService;
 
     @PostMapping(value = "/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> uploadFile(@RequestPart(value = "file") MultipartFile file) {
-        fileService.uploadFile(file);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+    public ResponseEntity<InvoiceDTO> uploadFile(@RequestPart(value = "file") MultipartFile file) {
+        InvoiceDTO invoiceDTO = fileService.uploadInvoiceFile(file);
+        return ResponseEntity.ok(invoiceDTO);
+
     }
 }
