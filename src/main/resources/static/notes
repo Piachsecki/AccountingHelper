@@ -1,0 +1,86 @@
+        // w kontrolerze tylko jeden serwis musi byc wywolywany, w innych serwisach mamy robic te wszystkie rzeczy
+        //  odpowiedzialnosc kontrolera - przyjac requesta, zwalidowac, przekazac do controllera i odeslac odpowiedz.
+
+
+        // 1 SERWIS +- 1 validator - ew login
+
+
+//Paweł Kadłubański
+//17:21
+//https://huggingface.co/
+//Paweł Kadłubański
+//17:27
+//https://hub.docker.com/r/minio/minio
+//
+//
+//
+
+
+
+
+MINIO SERVER STARTUP
+
+
+.\minio.exe server C:\minio --console-address :9001
+
+
+
+
+
+
+Dobra, chce aby byl FileService i on mial atrybuty takie jak
+MinioService, OcrService
+i zeby uploadFile metoda w FileService wywolywala najpierw metode MinioService.uploadFile,
+potem zeby OcrService mapowal to na odpowiednia encje InvoiceDTO, a potem Mapperem z DTO na Invoice i zapisywal do bazy danych
+(zapis do bazy danych zwroci ten obiekt)
+
+
+
+//
+//		String apiKey = "bcb1045014fd0a1fa01e4a1c71a50c5f";
+//		String filePath = "C:\\Users\\krpia\\Downloads\\AccountingHelperOfficial\\src\\main\\resources\\static\\PL_Invoice.png";
+//
+//		MindeeClient mindeeClient = new MindeeClient(apiKey);
+//
+//		// Load a file from disk
+//		LocalInputSource inputSource = new LocalInputSource(new File(filePath));
+//
+//		// Parse the file asynchronously
+//		AsyncPredictResponse<InvoiceV4> response = mindeeClient.enqueueAndParse(
+//				InvoiceV4.class,
+//				inputSource
+//		);
+//
+//		System.out.println(response.getDocument().get().getInference().getPrediction().getBillingAddress().getValue());
+
+
+//
+//		// pola potrzebne do price
+//		System.out.println(response.getDocument().getInference().getPrediction().getTotalAmount().getValue());
+//		System.out.println(response.getDocument().getInference().getPrediction().getLocale().getCurrency());
+////		System.out.println();
+////		System.out.println();
+////		System.out.println();
+////
+////
+////		//pola potrzebne do Company
+////		System.out.println(response.getDocument().getInference().getPrediction().getSupplierName().getValue());
+////		System.out.println();
+////		System.out.println();
+////		System.out.println();
+////		List<CompanyRegistrationField> supplierCompanyRegistrations = response.getDocument().getInference().getPrediction().getSupplierCompanyRegistrations();
+////		for (CompanyRegistrationField supplierCompanyRegistration : supplierCompanyRegistrations) {
+////			System.out.println(supplierCompanyRegistration.getValue());
+////
+////		}
+////
+////
+////		System.out.println();
+////		System.out.println();
+////		System.out.println();
+////		//pola potrzebne do Address
+//		System.out.println(response.getDocument().getInference().getPrediction().getSupplierAddress().getValue());
+
+
+		// Print a summary of the response
+//		System.out.println(response.toString());

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
@@ -23,6 +24,12 @@ public class Invoice {
     private InvoiceType invoiceType;
     private LocalDate issueDate;
     private LocalDate dueDate;
+    private BigDecimal taxRate;
+
+
+    @OneToOne
+    private Company company;
+
 
     @Embedded
     private Price price;

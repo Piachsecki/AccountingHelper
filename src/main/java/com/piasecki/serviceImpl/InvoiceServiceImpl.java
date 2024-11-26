@@ -29,8 +29,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public void addInvoice(Invoice invoice) {
-        invoiceRepository.save(invoice);
+    public Invoice addInvoice(Invoice invoice) {
+        return invoiceRepository.save(invoice);
     }
 
     @Override

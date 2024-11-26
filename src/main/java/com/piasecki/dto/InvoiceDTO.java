@@ -25,6 +25,12 @@ public class InvoiceDTO {
     private LocalDate dueDate;
     private BigDecimal amount;
     private String currency;
+    private BigDecimal taxRate;
+
+    private String companyName;
+    private String companyAddress;
+    private String companyNIP;
+
 
 
 

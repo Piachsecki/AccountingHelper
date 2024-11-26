@@ -5,10 +5,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface InvoiceService {
     Invoice getInvoice(long id);
     List<Invoice> getInvoicesByCustomerId(long id);
-    void addInvoice(Invoice invoice);
+    Invoice addInvoice(Invoice invoice);
     void updateInvoice(long id, Invoice invoice);
 
 }

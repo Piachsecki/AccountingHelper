@@ -49,6 +49,7 @@ public class TestcontainersConfiguration {
     public void first() {
         User user = User.builder()
                 .username("Kacper")
+                .NIP("a1234567890")
                 .build();
 
         userService.addUser(user);

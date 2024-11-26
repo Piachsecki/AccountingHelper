@@ -1,10 +1,7 @@
 package com.piasecki.domain;
 
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -13,6 +10,7 @@ import java.math.BigDecimal;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Price {
     private String currency;
     private BigDecimal amount;
