@@ -21,4 +21,10 @@ public class UserController {
         return userService.addUser(user);
     }
 
+
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public User deleteUser(@RequestParam) {
+//        return userService.addUser(user);
+//    }
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -27,7 +28,7 @@ public class Invoice {
     private BigDecimal taxRate;
 
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Company company;
 
 
@@ -38,4 +39,8 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @ManyToMany(mappedBy = "invoices")
+    private List<Worker> workers;
+
 }

@@ -84,3 +84,85 @@ potem zeby OcrService mapowal to na odpowiednia encje InvoiceDTO, a potem Mapper
 
 		// Print a summary of the response
 //		System.out.println(response.toString());
+
+
+
+
+
+
+(Database authentication)
+//spring security - autentykacja w oparciu o baze danych - w klasie konfiguracyjnej ktora tworzy spring context, to
+on moze znalezc zytkownika ktorego w headerze kazdego requesta (gdzie bedzie id ) kazdego uzytkownika
+
+
+
+pakiet validations i tam zrobic validatora do nipu, gdzie przy dodawaniu uzytkownika / zczytywania z ocr
+po prostu to wywolywac i sprawdzic manualnie
+- moze byc metoda statyczna ktora bierze stringa (regex)
+
+
+
+
+
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/accounting
+spring.datasource.username=root
+spring.datasource.password=mysql
+spring.jpa.hibernate.ddl-auto=create
+
+
+
+
+# Enable Hibernate SQL logging
+spring.jpa.show-sql=true
+
+# Format the SQL output to make it more readable
+spring.jpa.properties.hibernate.format_sql=true
+
+
+
+
+#minio
+minio.url=http://localhost:9000
+minio.access.name=minioadmin
+minio.access.secret=minioadmin
+
+#MINDEE
+mindee.key=${MINDEE_API_KEY}
+
+
+
+
+#OPENAI API
+#spring.ai.openai.chat.options.model=gpt-4
+spring.ai.openai.api-key=${OPENAI_API_KEY}
+spring.ai.openai.base-url=https://api.openai.com/v1
+spring.ai.openai.image.enabled=true
+
+
+
+
+
+
+
+
+adnotacja ValidateBy na klasie? - sprawdzic,
+
+
+
+
+adnotacje pattern, validate one moga dzialac tylko jak sie je wywoluje przez resta
+
+
+
+
+
+do testowania
+mvc test
+
+webtestclient
+
+restasure -> ten moze najlepszy
+
+

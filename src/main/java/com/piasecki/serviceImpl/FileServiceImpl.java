@@ -69,7 +69,7 @@ public class FileServiceImpl implements FileService {
 
             //
             // teraz do tego invoice dodac usera ze spring security contextu
-            Invoice addedInvoice = invoiceService.addInvoice(invoice);
+//            Invoice addedInvoice = invoiceService.addInvoice(invoice);
 
 
 

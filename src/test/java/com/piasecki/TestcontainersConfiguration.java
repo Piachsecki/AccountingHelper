@@ -47,6 +47,15 @@ public class TestcontainersConfiguration {
 
     @Test
     public void first() {
+
+        //zamiast obiektu podac jsona i go zserializowac jacksona / object mapperem
+
+        // adnotacje pattern i validate mozliwe, ze dziala w trakcie serializacji/deserialziacji obiektu
+        //moze ona dzialac w innych momentach
+        // to ztestowac na poziomie endpointow
+
+        //w
+
         User user = User.builder()
                 .username("Kacper")
                 .NIP("a1234567890")

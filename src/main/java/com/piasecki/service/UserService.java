@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service;
 import javax.validation.Valid;
 
 public interface UserService {
-    User addUser(@Valid User user);
+    User addUser(User user);
 }

@@ -34,6 +34,8 @@ public class InvoiceMapperImpl implements InvoiceMapper {
     private Address addressParser(InvoiceDTO invoiceDTO) {
         System.out.println(invoiceDTO.getCompanyAddress());
         if (Objects.nonNull(invoiceDTO.getCompanyAddress())) {
+
+            //pusta tablica stringow zwrocic
             String[] splittedAddress = invoiceDTO.getCompanyAddress().split(" ");
             for (String ad : splittedAddress) {
 
