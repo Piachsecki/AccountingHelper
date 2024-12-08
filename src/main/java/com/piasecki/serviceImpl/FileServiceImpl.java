@@ -6,6 +6,7 @@ import com.mindee.parsing.common.AsyncPredictResponse;
 import com.mindee.product.invoice.InvoiceV4;
 import com.piasecki.domain.Invoice;
 import com.piasecki.domain.InvoiceType;
+import com.piasecki.domain.User;
 import com.piasecki.dto.InvoiceDTO;
 import com.piasecki.dto.ReceiptDTO;
 //import com.piasecki.mapper.InvoiceMapper;
@@ -13,6 +14,7 @@ import com.piasecki.dto.ReceiptDTO;
 import com.piasecki.mapper.InvoiceMapper;
 import com.piasecki.service.FileService;
 import com.piasecki.service.InvoiceService;
+import com.piasecki.service.UserService;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
@@ -21,6 +23,9 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,6 +41,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,6 +54,7 @@ public class FileServiceImpl implements FileService {
 //    private ReceiptMapper receiptMapper;
     private MindeeClient mindeeClient;
     private InvoiceService invoiceService;
+    private UserService userService;
 
 
     @Override
@@ -124,6 +131,29 @@ public class FileServiceImpl implements FileService {
         String companyAddress = response.getDocument().get().getInference().getPrediction().getSupplierAddress().getValue();
         String firstNIP = findNIPvalues(response.toString()).getFirst();
         System.out.println(companyAddress);
+
+
+
+
+        // Wyciągnij zalogowanego użytkownika
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
+            throw new RuntimeException("Zalogowany użytkownik nie został znaleziony");
+        }
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+
+        // Pobierz encję użytkownika z bazy danych
+        userService.(username);
+        if (userOpt.isEmpty()) {
+            throw new RuntimeException("Nie znaleziono użytkownika w bazie danych");
+        }
+        User user = userOpt.get();
+
+        System.out.println(user);
+        System.out.println(user);
+        System.out.println(user);
+
 
 //        List<String> findedNIPS = findNIPvalues(response.toString());
 

@@ -25,6 +25,10 @@ public class User {
 
     private String username;
 
+    private String password;
+
+    private String role;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Invoice> invoices;
 
