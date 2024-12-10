@@ -7,29 +7,23 @@ import com.mindee.product.invoice.InvoiceV4;
 import com.piasecki.domain.Invoice;
 import com.piasecki.domain.InvoiceType;
 import com.piasecki.domain.User;
+import com.piasecki.dto.CompanyDTO;
 import com.piasecki.dto.InvoiceDTO;
 import com.piasecki.dto.ReceiptDTO;
-//import com.piasecki.mapper.InvoiceMapper;
-//import com.piasecki.mapper.ReceiptMapper;
 import com.piasecki.mapper.InvoiceMapper;
 import com.piasecki.service.FileService;
 import com.piasecki.service.InvoiceService;
 import com.piasecki.service.UserService;
+import com.piasecki.utils.SecurityUtils;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.beans.Transient;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +35,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,6 +50,8 @@ public class FileServiceImpl implements FileService {
     private UserService userService;
 
 
+
+    //TODO tutaj zwrocic InvoiceDTO do usera czy Invoice
     @Override
     public InvoiceDTO uploadInvoiceFile(MultipartFile file) {
         try {
@@ -71,14 +66,17 @@ public class FileServiceImpl implements FileService {
 
 
             Invoice invoice = invoiceMapper.mapInvoiceDTOtoInvoiceEntity(invoiceDTO);
+            User currentUser = SecurityUtils.getCurrentUser(userService);
+            invoice.setUser(currentUser);
 
-            System.out.println(invoice.toString());
+//            System.out.println(invoice.toString());
+//            System.out.println(invoice.toString());
+//            System.out.println(invoice.toString());
 
             //
             // teraz do tego invoice dodac usera ze spring security contextu
-//            Invoice addedInvoice = invoiceService.addInvoice(invoice);
-
-
+            Invoice addedInvoice = invoiceService.addInvoice(invoice);
+//            System.out.println(addedInvoice.toString());
 
 
 
@@ -93,7 +91,7 @@ public class FileServiceImpl implements FileService {
     }
 
     public static void deleteFile(Path filePath) throws IOException {
-        Files.deleteIfExists(filePath); // Deletes file if it exists
+        Files.deleteIfExists(filePath); // Deletes file if it ex8ists
     }
 
 
@@ -121,58 +119,33 @@ public class FileServiceImpl implements FileService {
 
         BigDecimal taxRate = BigDecimal.valueOf(response.getDocument().get().getInference().getPrediction().getTaxes().get(0).getRate());
 
-
-        //TaxRate - 23%, itp - TUTAJ MAMY VAT
-//        System.out.println(response.getDocument().get().getInference().getPrediction().getTaxes().get(0).getRate());
-
-
-
         String companyName = response.getDocument().get().getInference().getPrediction().getSupplierName().getValue();
         String companyAddress = response.getDocument().get().getInference().getPrediction().getSupplierAddress().getValue();
-        String firstNIP = findNIPvalues(response.toString()).getFirst();
+        String companyNIP = null;
         System.out.println(companyAddress);
 
 
+        User currentUser = SecurityUtils.getCurrentUser(userService);
 
-
-        // Wyciągnij zalogowanego użytkownika
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
-            throw new RuntimeException("Zalogowany użytkownik nie został znaleziony");
+        List<String> findedNIPS = findNIPvalues(response.toString());
+        if(findedNIPS.isEmpty()) {
+            companyNIP = null;
+        }else {
+            for (String findedNIP : findedNIPS) {
+                if(currentUser.getNIP().equals(findedNIP)){
+                    continue;
+                }else {
+                    companyNIP = new String(findedNIP);
+                    break;
+                }
+            }
         }
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String username = userDetails.getUsername();
 
-        // Pobierz encję użytkownika z bazy danych
-        userService.(username);
-        if (userOpt.isEmpty()) {
-            throw new RuntimeException("Nie znaleziono użytkownika w bazie danych");
-        }
-        User user = userOpt.get();
-
-        System.out.println(user);
-        System.out.println(user);
-        System.out.println(user);
-
-
-//        List<String> findedNIPS = findNIPvalues(response.toString());
-
-        //Tutaj bedzie validacja ze spring security contextem + wyciagniecie akurat NIP'u Usera do porównania
-        /*/
-            iter findendNips
-                if(findedNIP equals springContext.getUser().getNip())
-                    skip
-                else
-                    companyNIP = findedNip
-
-         */
-
-
-
-
-
-
-//        System.out.println(findedNIPS);
+        CompanyDTO companyDTO = CompanyDTO.builder()
+                .companyAddress(companyAddress)
+                .companyName(companyName)
+                .companyNIP(companyNIP)
+                .build();
 
 
         return InvoiceDTO.builder()
@@ -182,10 +155,9 @@ public class FileServiceImpl implements FileService {
                 .dueDate(dueDate)
                 .amount(amount)
                 .currency(currency)
-                .companyName(companyName)
-                .companyAddress(companyAddress)
+                .companyDTO(companyDTO)
                 .taxRate(taxRate)
-                .companyNIP(firstNIP)
+
                 .build();
     }
 

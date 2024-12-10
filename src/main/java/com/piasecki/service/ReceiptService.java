@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ReceiptService {
     Receipt getReceipt(Long id);
-    Receipt saveReceipt(Receipt receipt);
+    Receipt addReceipt(Receipt receipt);
     void deleteReceipt(Long id);
 }

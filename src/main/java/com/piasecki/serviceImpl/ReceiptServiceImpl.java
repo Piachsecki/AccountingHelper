@@ -18,12 +18,12 @@ public class ReceiptServiceImpl implements ReceiptService {
     }
 
     @Override
-    public Receipt saveReceipt(Receipt receipt) {
+    public Receipt addReceipt(Receipt receipt) {
         return receiptRepository.save(receipt);
     }
 
     @Override
     public void deleteReceipt(Long id) {
-
+        receiptRepository.deleteById(id);
     }
 }

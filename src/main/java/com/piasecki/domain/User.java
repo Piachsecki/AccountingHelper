@@ -1,14 +1,8 @@
 package com.piasecki.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.simpleframework.xml.core.Validate;
+import lombok.*;
 
-
-import javax.annotation.Nullable;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
@@ -18,16 +12,23 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ToString.Include
     private String username;
 
     private String password;
 
     private String role;
+
+    @Embedded
+    private Entrepreneurship entrepreneurship;
+
+//    private BusinessActivity businessActivity;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Invoice> invoices;
@@ -37,6 +38,7 @@ public class User {
 
     //    @Validate()
     @Pattern(regexp = "\\b\\d{10}\\b|\\b\\d{3}-\\d{2}-\\d{2}-\\d{3}\\b")
+    @ToString.Include
     private String NIP;
 
 

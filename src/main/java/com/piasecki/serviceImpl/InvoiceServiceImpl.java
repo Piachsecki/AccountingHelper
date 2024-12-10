@@ -3,13 +3,10 @@ package com.piasecki.serviceImpl;
 import com.piasecki.domain.Invoice;
 import com.piasecki.repository.InvoiceRepository;
 import com.piasecki.service.InvoiceService;
-import lombok.AllArgsConstructor;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 
@@ -31,6 +28,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public Invoice addInvoice(Invoice invoice) {
         return invoiceRepository.save(invoice);
+    }
+
+    @Override
+    public void deleteInvoice(long id) {
+        invoiceRepository.deleteById(id);
     }
 
     @Override

@@ -1,10 +1,9 @@
 package com.piasecki.controller;
 
-import com.piasecki.domain.User;
+import com.piasecki.domain.Invoice;
 import com.piasecki.dto.InvoiceDTO;
 import com.piasecki.service.FileService;
 import com.piasecki.service.InvoiceService;
-import com.piasecki.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,6 +24,17 @@ public class InvoiceController {
     public ResponseEntity<InvoiceDTO> uploadFile(@RequestPart(value = "file") MultipartFile file) {
         InvoiceDTO invoiceDTO = fileService.uploadInvoiceFile(file);
         return ResponseEntity.ok(invoiceDTO);
+    }
 
+    @PostMapping(value = "/addInvoice")
+    public ResponseEntity<Invoice> addInvoice(@RequestBody Invoice invoice) {
+        invoiceService.addInvoice(invoice);
+        return ResponseEntity.ok(invoice);
+    }
+
+    @DeleteMapping(value = "/deleteInvoice")
+    public ResponseEntity<HttpStatus> deleteInvoice(@RequestParam Long id) {
+        invoiceService.deleteInvoice(id);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

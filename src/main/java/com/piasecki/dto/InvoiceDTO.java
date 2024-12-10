@@ -1,14 +1,10 @@
 package com.piasecki.dto;
 
 import com.piasecki.domain.InvoiceType;
-import com.piasecki.domain.Price;
-import com.piasecki.domain.User;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -27,9 +23,7 @@ public class InvoiceDTO {
     private String currency;
     private BigDecimal taxRate;
 
-    private String companyName;
-    private String companyAddress;
-    private String companyNIP;
+    private CompanyDTO companyDTO;
 
 
 
