@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class IncomeController  {
     private IncomeCalculator incomeCalculator;
 
-    @GetMapping(value = "/generate")
+    @GetMapping(value = "/calculate")
     public ResponseEntity<BigDecimal> calculateIncome() {
         BigDecimal income = incomeCalculator.calculateIncome();
         return ResponseEntity.ok(income);

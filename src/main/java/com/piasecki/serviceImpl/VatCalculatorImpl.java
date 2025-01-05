@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @AllArgsConstructor
 @Service
 public class VatCalculatorImpl implements VatCalculator {
@@ -30,12 +32,11 @@ public class VatCalculatorImpl implements VatCalculator {
 
         List<Invoice> allIncomeInvoices = invoiceService.getAllIncomeInvoices();
         List<Invoice> allCostInvoices = invoiceService.getAllCostInvoices();
-        List<Receipt> allReceipts = receiptService.getAllReceipts();
-        for (Receipt receipt : allReceipts) {
-            if (!receipt.isNip()){
-                allReceipts.remove(receipt);
-            }
-        }
+        List<Receipt> allReceipts = receiptService.getAllReceipts()
+                .stream()
+                .filter(Receipt::isNip)
+                .collect(Collectors.toList());
+
 
         BigDecimal vatToPay = vatToPay(allIncomeInvoices);
         BigDecimal vatToClaim = vatToClaim(allCostInvoices, allReceipts);
