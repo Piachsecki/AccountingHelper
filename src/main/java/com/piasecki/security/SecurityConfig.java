@@ -31,7 +31,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests
                         (authorizeRequests -> {
                             authorizeRequests.requestMatchers("/api/invoice/uploadFile").hasRole("ADMIN");
-                            authorizeRequests.requestMatchers("/api/api/revenue/generate").hasRole("ADMIN");
+                            authorizeRequests.requestMatchers("/api/revenue/generate").hasRole("ADMIN");
+                            authorizeRequests.requestMatchers("/api/vat/calculate").hasRole("ADMIN");
                             authorizeRequests.requestMatchers("/admin/**").hasRole("ADMIN");
                             authorizeRequests.requestMatchers("/user/**").hasRole("USER");
                             authorizeRequests.requestMatchers("/home", "/register/**", "/login").permitAll();

@@ -3,16 +3,18 @@ package com.piasecki.serviceImpl;
 import com.mindee.MindeeClient;
 import com.mindee.input.LocalInputSource;
 import com.mindee.parsing.common.AsyncPredictResponse;
+import com.mindee.parsing.common.PredictResponse;
 import com.mindee.product.invoice.InvoiceV4;
-import com.piasecki.domain.Invoice;
-import com.piasecki.domain.InvoiceType;
-import com.piasecki.domain.User;
+import com.mindee.product.receipt.ReceiptV5;
+import com.piasecki.domain.*;
 import com.piasecki.dto.CompanyDTO;
 import com.piasecki.dto.InvoiceDTO;
 import com.piasecki.dto.ReceiptDTO;
 import com.piasecki.mapper.InvoiceMapper;
+import com.piasecki.mapper.ReceiptMapper;
 import com.piasecki.service.FileService;
 import com.piasecki.service.InvoiceService;
+import com.piasecki.service.ReceiptService;
 import com.piasecki.service.UserService;
 import com.piasecki.utils.SecurityUtils;
 import io.minio.BucketExistsArgs;
@@ -44,7 +46,8 @@ public class FileServiceImpl implements FileService {
 
     private MinioClient minioClient;
     private InvoiceMapper invoiceMapper;
-//    private ReceiptMapper receiptMapper;
+    private ReceiptMapper receiptMapper;
+    private ReceiptService receiptService;
     private MindeeClient mindeeClient;
     private InvoiceService invoiceService;
     private UserService userService;
@@ -189,10 +192,63 @@ public class FileServiceImpl implements FileService {
             }
             uploadFileToMilo("receipts", file.getOriginalFilename(), file.getInputStream(), file.getContentType());
 
-            return new ReceiptDTO();
-        } catch (IOException e) {
+            Path destination = addFileToProjectPath(file);
+
+            ReceiptDTO receiptDTO= ocrReceiptFileToObject(destination);
+
+            Receipt receipt = receiptMapper.mapReceiptDTOtoReceiptEntity(receiptDTO);
+            User currentUser = SecurityUtils.getCurrentUser(userService);
+            receipt.setUser(currentUser);
+
+            Receipt addedReceipt = receiptService.addReceipt(receipt);
+
+
+            deleteFile(destination);
+
+            return receiptDTO;
+
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException("Store exception");
         }
+    }
+
+    private ReceiptDTO ocrReceiptFileToObject(Path destination) throws IOException, InterruptedException {
+        LocalInputSource inputSource = new LocalInputSource(new File(destination.toString()));
+
+        PredictResponse<ReceiptV5> response = mindeeClient.parse(
+                ReceiptV5.class,
+                inputSource
+        );
+
+        LocalDate date = response.getDocument().getInference().getPrediction().getDate().getValue();
+        BigDecimal amount = BigDecimal.valueOf(response.getDocument().getInference().getPrediction().getTotalAmount().getValue());
+        String currency = response.getDocument().getInference().getPrediction().getLocale().getCurrency();
+        Double rate = response.getDocument().getInference().getPrediction().getTaxes().get(0).getRate();
+        BigDecimal taxRate = BigDecimal.ONE;
+        if (Objects.nonNull(rate)){
+            taxRate = BigDecimal.valueOf(rate);
+        }
+        boolean isNip = false;
+
+        List<String> findedNIPS = findNIPvalues(response.toString());
+
+        User currentUser = SecurityUtils.getCurrentUser(userService);
+
+        for (String findedNIP : findedNIPS) {
+            if (currentUser.getNIP().equals(findedNIP)) {
+                isNip = true;
+                break;
+            }
+        }
+
+
+        return ReceiptDTO.builder()
+                .isNip(isNip)
+                .date(date)
+                .currency(currency)
+                .taxRate(taxRate)
+                .amount(amount)
+                .build();
     }
 
 

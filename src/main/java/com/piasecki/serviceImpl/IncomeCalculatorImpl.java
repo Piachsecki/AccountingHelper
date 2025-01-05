@@ -21,6 +21,7 @@ import java.util.List;
 public class IncomeCalculatorImpl implements IncomeCalculator {
     private InvoiceService invoiceService;
     private ReceiptService receiptService;
+//    private ReceiptService receiptService;
     private UserService userService;
 
     @Override

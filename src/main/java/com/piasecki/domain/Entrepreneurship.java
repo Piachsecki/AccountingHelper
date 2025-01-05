@@ -12,5 +12,5 @@ import lombok.*;
 public class Entrepreneurship {
     private TaxationMethod taxationMethod;
     private BusinessActivity businessActivity;
-    private boolean isVat;
+    private boolean vat;
 }

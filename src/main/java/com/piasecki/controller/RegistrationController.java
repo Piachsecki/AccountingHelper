@@ -3,6 +3,7 @@ package com.piasecki.controller;
 import com.piasecki.domain.User;
 import com.piasecki.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +17,9 @@ public class RegistrationController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register/user")
-    public User createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userService.addUser(user);
+        return ResponseEntity.ok(userService.addUser(user));
     }
 
 
