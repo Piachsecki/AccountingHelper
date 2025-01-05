@@ -7,5 +7,5 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface RevenueCalculator {
-    public BigDecimal calculateRevenue(List<Invoice> invoices);
+    BigDecimal calculateRevenue();
 }

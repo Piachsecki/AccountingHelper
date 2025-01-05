@@ -17,7 +17,7 @@ public class IncomeController  {
 
     @GetMapping(value = "/generate")
     public ResponseEntity<BigDecimal> calculateIncome() {
-        BigDecimal income = incomeCalculator.calculateIncome(null, null);
+        BigDecimal income = incomeCalculator.calculateIncome();
         return ResponseEntity.ok(income);
     }
 }

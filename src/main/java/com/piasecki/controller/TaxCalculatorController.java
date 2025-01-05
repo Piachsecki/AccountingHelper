@@ -1,10 +1,12 @@
 package com.piasecki.controller;
 
 
-import com.piasecki.domain.Invoice;
-import com.piasecki.service.TaxCalculatorService;
+import com.piasecki.security.SecurityConfig;
+import com.piasecki.service.TaxCalculationStrategy;
+import com.piasecki.service.UserService;
+import com.piasecki.serviceImpl.TaxCalculatorService;
+import com.piasecki.utils.SecurityUtils;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +17,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class TaxCalculatorController {
     private TaxCalculatorService taxCalculatorService;
-
+    private UserService userService;
     @GetMapping(value = "/calculate")
     public ResponseEntity<BigDecimal> calculateMyTax() {
-        BigDecimal tax = taxCalculatorService.calculateIncomeTax(null, null);
+        //TODO NIE WIEM GDZIE MAM WYCIAGNAC typ opodatkowania po ktorym bedziemy obliczac ten podatek
+        BigDecimal tax = taxCalculatorService.calculateTax(SecurityUtils.getCurrentUser(userService).getEntrepreneurship());
         return ResponseEntity.ok(tax);
     }
 

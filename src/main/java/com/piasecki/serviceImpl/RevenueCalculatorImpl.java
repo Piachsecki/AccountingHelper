@@ -14,7 +14,12 @@ import java.util.List;
 public class RevenueCalculatorImpl implements RevenueCalculator {
     private InvoiceService invoiceService;
     @Override
-    public BigDecimal calculateRevenue(List<Invoice> invoices) {
-        return null;
+    public BigDecimal calculateRevenue() {
+        BigDecimal revenue = BigDecimal.ZERO;
+        List<Invoice> allIncomeInvoices = invoiceService.getAllIncomeInvoices();
+        for (Invoice incomeInvoice : allIncomeInvoices) {
+            revenue = revenue.add(incomeInvoice.getPrice().getAmount());
+        }
+        return revenue;
     }
 }

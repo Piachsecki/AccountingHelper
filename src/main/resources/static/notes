@@ -166,3 +166,23 @@ webtestclient
 restasure -> ten moze najlepszy
 
 
+
+
+
+SpringScheduler - pozwala wykonywacz zadania periodyczne - on wtedy odpala ta funckje co tyle ile zdefiniujemy
+
+w tym wydarzeniu cronowym musimy napisac metoda, ktora wykonuje sie MAKSYMALNIE 1 RAZ dziennie, potem iddzie do bazy danych
+i sprawdza ktory due date do zaplacenia ma do 3 dni. To zwraca liste faktur, ktora potem mu tez zwracamy. To wszystko dzieje sie
+asynchronicznie, wiec potem musimy wyslac maila do uzytkownika
+
+
+zanim przejdziesz do wysylania maili, to mozesz miec inny endpoint przy logowaniu - getNotification
+
+po logowanie jak jest success to wykonujemy 2gi endpoint - notification i od razu user dostaje informacje ktore  go interesuja-
+-due date do zaplacenia czy inne
+
+
+
+
+Strimlit - do jakiejs prostej wersji frontendu
+

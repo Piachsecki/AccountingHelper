@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+
+/*
+
+Jak controller wykorzystuje 2 serwisy jednoczesnie w jednej metodzie, to
+powinnismy stworzyc fasade, ktora to sobie rozdzieli/uzyhe
+ */
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/invoice")

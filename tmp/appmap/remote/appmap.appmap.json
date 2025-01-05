@@ -1,0 +1,2366 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "headers": {
+          "content-length": "114",
+          "postman-token": "dd2f7abb-3362-406f-8c53-1aab79bddcb0",
+          "host": "localhost:8080",
+          "content-type": "application/json",
+          "connection": "keep-alive",
+          "accept-encoding": "gzip, deflate, br",
+          "user-agent": "PostmanRuntime/7.43.0",
+          "accept": "*/*"
+        },
+        "normalized_path_info": "/register/user",
+        "path_info": "/register/user",
+        "protocol": "HTTP/1.1",
+        "request_method": "POST"
+      },
+      "id": 1,
+      "thread_id": 50
+    },
+    {
+      "defined_class": "com.piasecki.controller.RegistrationController",
+      "event": "call",
+      "id": 2,
+      "lineno": 20,
+      "method_id": "createUser",
+      "parameters": [
+        {
+          "class": "com.piasecki.domain.User",
+          "kind": "req",
+          "name": "user",
+          "object_id": 1362302725,
+          "value": "User(username=lenka123, NIP=092836212)"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/controller/RegistrationController.java",
+      "receiver": {
+        "class": "com.piasecki.controller.RegistrationController",
+        "object_id": 1103591521,
+        "value": "com.piasecki.controller.RegistrationController@41c77861"
+      },
+      "static": false,
+      "thread_id": 50
+    },
+    {
+      "defined_class": "com.piasecki.serviceImpl.UserServiceImpl",
+      "event": "call",
+      "id": 3,
+      "lineno": 24,
+      "method_id": "addUser",
+      "parameters": [
+        {
+          "class": "com.piasecki.domain.User",
+          "kind": "req",
+          "name": "user",
+          "object_id": 1362302725,
+          "value": "User(username=lenka123, NIP=092836212)"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/serviceImpl/UserServiceImpl.java",
+      "receiver": {
+        "class": "com.piasecki.serviceImpl.UserServiceImpl",
+        "object_id": 852737155,
+        "value": "com.piasecki.serviceImpl.UserServiceImpl@32d3bc83"
+      },
+      "static": false,
+      "thread_id": 50
+    },
+    {
+      "event": "call",
+      "id": 4,
+      "sql_query": {
+        "database_type": "MySQL",
+        "sql": "insert into user (nip,address_id,business_activity,is_vat,taxation_method,password,role,username) values (?,?,?,?,?,?,?,?)"
+      },
+      "thread_id": 50
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 5,
+      "parent_id": 4,
+      "thread_id": 50
+    },
+    {
+      "elapsed": 0.01076168,
+      "event": "return",
+      "id": 6,
+      "parent_id": 3,
+      "return_value": {
+        "class": "com.piasecki.domain.User",
+        "object_id": 1362302725,
+        "value": "User(username=lenka123, NIP=092836212)"
+      },
+      "thread_id": 50
+    },
+    {
+      "elapsed": 0.02226868,
+      "event": "return",
+      "id": 7,
+      "parent_id": 2,
+      "return_value": {
+        "class": "com.piasecki.domain.User",
+        "object_id": 1362302725,
+        "value": "User(username=lenka123, NIP=092836212)"
+      },
+      "thread_id": 50
+    },
+    {
+      "elapsed": 0.0398084,
+      "event": "return",
+      "http_server_response": {
+        "headers": {
+          "X-Frame-Options": "DENY",
+          "Transfer-Encoding": "chunked",
+          "Keep-Alive": "timeout=60",
+          "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+          "X-Content-Type-Options": "nosniff",
+          "Connection": "keep-alive",
+          "Pragma": "no-cache",
+          "Expires": "0",
+          "X-XSS-Protection": "0",
+          "Date": "Mon, 16 Dec 2024 22:46:07 GMT",
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "id": 8,
+      "parent_id": 1,
+      "thread_id": 50
+    },
+    {
+      "defined_class": "com.piasecki.serviceImpl.UserServiceImpl",
+      "event": "call",
+      "id": 9,
+      "lineno": 39,
+      "method_id": "loadUserByUsername",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "username",
+          "object_id": 846734080,
+          "value": "lenka123"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/serviceImpl/UserServiceImpl.java",
+      "receiver": {
+        "class": "com.piasecki.serviceImpl.UserServiceImpl",
+        "object_id": 852737155,
+        "value": "com.piasecki.serviceImpl.UserServiceImpl@32d3bc83"
+      },
+      "static": false,
+      "thread_id": 52
+    },
+    {
+      "defined_class": "com.piasecki.repository.UserRepository",
+      "event": "call",
+      "id": 10,
+      "lineno": -1,
+      "method_id": "findByUsername",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "p0",
+          "object_id": 846734080,
+          "value": "lenka123"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/repository/UserRepository.java",
+      "receiver": {
+        "class": "jdk.proxy2.$Proxy199",
+        "object_id": 1054449353,
+        "value": "org.springframework.data.jpa.repository.support.SimpleJpaRepository@57167602"
+      },
+      "static": false,
+      "thread_id": 52
+    },
+    {
+      "event": "call",
+      "id": 11,
+      "sql_query": {
+        "database_type": "MySQL",
+        "sql": "select u1_0.id,u1_0.nip,u1_0.address_id,u1_0.business_activity,u1_0.is_vat,u1_0.taxation_method,u1_0.password,u1_0.role,u1_0.username from user u1_0 where u1_0.username=?"
+      },
+      "thread_id": 52
+    },
+    {
+      "elapsed": 0.00008526,
+      "event": "return",
+      "id": 12,
+      "parent_id": 11,
+      "thread_id": 52
+    },
+    {
+      "elapsed": 0.02533412,
+      "event": "return",
+      "id": 13,
+      "parent_id": 10,
+      "return_value": {
+        "class": "java.util.Optional",
+        "object_id": 667139076,
+        "value": "Optional[User(username=lenka123, NIP=092836212)]"
+      },
+      "thread_id": 52
+    },
+    {
+      "elapsed": 0.02592368,
+      "event": "return",
+      "id": 14,
+      "parent_id": 9,
+      "return_value": {
+        "class": "org.springframework.security.core.userdetails.User",
+        "object_id": 893272198,
+        "value": "org.springframework.security.core.userdetails.User [Username=lenka123, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN, ROLE_USER]]"
+      },
+      "thread_id": 52
+    },
+    {
+      "event": "call",
+      "http_server_request": {
+        "headers": {
+          "content-length": "126787",
+          "cookie": "JSESSIONID=697E3D20F624EEB71B163546420C72E0",
+          "postman-token": "738a92d1-f68c-4903-91a0-af7a3d1df979",
+          "host": "localhost:8080",
+          "connection": "keep-alive",
+          "content-type": "multipart/form-data; boundary=--------------------------381761588229050270217017",
+          "accept-encoding": "gzip, deflate, br",
+          "user-agent": "PostmanRuntime/7.43.0",
+          "accept": "*/*"
+        },
+        "normalized_path_info": "/api/invoice/uploadFile",
+        "path_info": "/api/invoice/uploadFile",
+        "protocol": "HTTP/1.1",
+        "request_method": "POST"
+      },
+      "id": 15,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.controller.InvoiceController",
+      "event": "call",
+      "id": 16,
+      "lineno": 25,
+      "method_id": "uploadFile",
+      "parameters": [
+        {
+          "class": "org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile",
+          "kind": "req",
+          "name": "file",
+          "object_id": 1839169834,
+          "value": "org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@6d9f812a"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/controller/InvoiceController.java",
+      "receiver": {
+        "class": "com.piasecki.controller.InvoiceController",
+        "object_id": 1734747187,
+        "value": "com.piasecki.controller.InvoiceController@67662433"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.serviceImpl.FileServiceImpl",
+      "event": "call",
+      "id": 17,
+      "lineno": 58,
+      "method_id": "uploadInvoiceFile",
+      "parameters": [
+        {
+          "class": "org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile",
+          "kind": "req",
+          "name": "file",
+          "object_id": 1839169834,
+          "value": "org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@6d9f812a"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/serviceImpl/FileServiceImpl.java",
+      "receiver": {
+        "class": "com.piasecki.serviceImpl.FileServiceImpl",
+        "object_id": 418025943,
+        "value": "com.piasecki.serviceImpl.FileServiceImpl@18ea91d7"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.serviceImpl.FileServiceImpl",
+      "event": "call",
+      "id": 18,
+      "lineno": 201,
+      "method_id": "uploadFileToMilo",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "bucketName",
+          "object_id": 498050853,
+          "value": "invoices"
+        },
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "objectName",
+          "object_id": 1627529843,
+          "value": "PL_Invoice3.png"
+        },
+        {
+          "class": "sun.nio.ch.ChannelInputStream",
+          "kind": "req",
+          "name": "inputStream",
+          "object_id": 1133287616,
+          "value": "sun.nio.ch.ChannelInputStream@438c98c0"
+        },
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "contentType",
+          "object_id": 1376507722,
+          "value": "image/png"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/serviceImpl/FileServiceImpl.java",
+      "receiver": {
+        "class": "com.piasecki.serviceImpl.FileServiceImpl",
+        "object_id": 418025943,
+        "value": "com.piasecki.serviceImpl.FileServiceImpl@18ea91d7"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.02819782,
+      "event": "return",
+      "id": 19,
+      "parent_id": 18,
+      "thread_id": 53
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://api.mindee.net/v1/products/mindee/invoices/v4/predict_async"
+      },
+      "id": 20,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.10249874,
+      "event": "return",
+      "http_client_response": {
+        "mime_type": "application/json",
+        "status": 202
+      },
+      "id": 21,
+      "parent_id": 20,
+      "thread_id": 53
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "GET",
+        "url": "https://api.mindee.net/v1/products/mindee/invoices/v4/documents/queue/c3c0b8da-f5cc-4025-a20e-4ff679af2d8b"
+      },
+      "id": 22,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.03548349,
+      "event": "return",
+      "http_client_response": {
+        "mime_type": "application/json",
+        "status": 200
+      },
+      "id": 23,
+      "parent_id": 22,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.utils.SecurityUtils",
+      "event": "call",
+      "id": 24,
+      "lineno": 13,
+      "method_id": "getCurrentUser",
+      "parameters": [
+        {
+          "class": "com.piasecki.serviceImpl.UserServiceImpl",
+          "kind": "req",
+          "name": "userService",
+          "object_id": 852737155,
+          "value": "com.piasecki.serviceImpl.UserServiceImpl@32d3bc83"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/utils/SecurityUtils.java",
+      "static": true,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.serviceImpl.UserServiceImpl",
+      "event": "call",
+      "id": 25,
+      "lineno": 29,
+      "method_id": "findByUsername",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "username",
+          "object_id": 528237870,
+          "value": "lenka123"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/serviceImpl/UserServiceImpl.java",
+      "receiver": {
+        "class": "com.piasecki.serviceImpl.UserServiceImpl",
+        "object_id": 852737155,
+        "value": "com.piasecki.serviceImpl.UserServiceImpl@32d3bc83"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.repository.UserRepository",
+      "event": "call",
+      "id": 26,
+      "lineno": -1,
+      "method_id": "findByUsername",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "p0",
+          "object_id": 528237870,
+          "value": "lenka123"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/repository/UserRepository.java",
+      "receiver": {
+        "class": "jdk.proxy2.$Proxy199",
+        "object_id": 1054449353,
+        "value": "org.springframework.data.jpa.repository.support.SimpleJpaRepository@57167602"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "event": "call",
+      "id": 27,
+      "sql_query": {
+        "database_type": "MySQL",
+        "sql": "select u1_0.id,u1_0.nip,u1_0.address_id,u1_0.business_activity,u1_0.is_vat,u1_0.taxation_method,u1_0.password,u1_0.role,u1_0.username from user u1_0 where u1_0.username=?"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 28,
+      "parent_id": 27,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.0004034,
+      "event": "return",
+      "id": 29,
+      "parent_id": 26,
+      "return_value": {
+        "class": "java.util.Optional",
+        "object_id": 1367423495,
+        "value": "Optional[User(username=lenka123, NIP=092836212)]"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.0004034,
+      "event": "return",
+      "id": 30,
+      "parent_id": 25,
+      "return_value": {
+        "class": "com.piasecki.domain.User",
+        "object_id": 1895821964,
+        "value": "User(username=lenka123, NIP=092836212)"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00050341,
+      "event": "return",
+      "id": 31,
+      "parent_id": 24,
+      "return_value": {
+        "class": "com.piasecki.domain.User",
+        "object_id": 1895821964,
+        "value": "User(username=lenka123, NIP=092836212)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.CompanyDTO",
+      "event": "call",
+      "id": 32,
+      "lineno": 7,
+      "method_id": "builder",
+      "path": "src/main/java/com/piasecki/dto/CompanyDTO.java",
+      "static": true,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00050048,
+      "event": "return",
+      "id": 33,
+      "parent_id": 32,
+      "return_value": {
+        "class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+        "object_id": 1740483694,
+        "value": "CompanyDTO.CompanyDTOBuilder(companyName=null, companyAddress=null, companyNIP=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+      "event": "call",
+      "id": 34,
+      "lineno": 7,
+      "method_id": "companyAddress",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "companyAddress",
+          "object_id": 265213261,
+          "value": "u 1 Lishopada 2243 02-11 Wankzawa"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/CompanyDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+        "object_id": 1740483694,
+        "value": "CompanyDTO.CompanyDTOBuilder(companyName=null, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00010018,
+      "event": "return",
+      "id": 35,
+      "parent_id": 34,
+      "return_value": {
+        "class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+        "object_id": 1740483694,
+        "value": "CompanyDTO.CompanyDTOBuilder(companyName=null, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+      "event": "call",
+      "id": 36,
+      "lineno": 7,
+      "method_id": "companyName",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "companyName",
+          "object_id": 768277755,
+          "value": "FIMA PRAYHIADOWA"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/CompanyDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+        "object_id": 1740483694,
+        "value": "CompanyDTO.CompanyDTOBuilder(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 37,
+      "parent_id": 36,
+      "return_value": {
+        "class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+        "object_id": 1740483694,
+        "value": "CompanyDTO.CompanyDTOBuilder(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+      "event": "call",
+      "id": 38,
+      "lineno": 7,
+      "method_id": "companyNIP",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "companyNIP",
+          "object_id": 2055380600,
+          "value": "5552111101"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/CompanyDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+        "object_id": 1740483694,
+        "value": "CompanyDTO.CompanyDTOBuilder(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 39,
+      "parent_id": 38,
+      "return_value": {
+        "class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+        "object_id": 1740483694,
+        "value": "CompanyDTO.CompanyDTOBuilder(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+      "event": "call",
+      "id": 40,
+      "lineno": 7,
+      "method_id": "build",
+      "path": "src/main/java/com/piasecki/dto/CompanyDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.CompanyDTO$CompanyDTOBuilder",
+        "object_id": 1740483694,
+        "value": "CompanyDTO.CompanyDTOBuilder(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 41,
+      "parent_id": 40,
+      "return_value": {
+        "class": "com.piasecki.dto.CompanyDTO",
+        "object_id": 31960055,
+        "value": "CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO",
+      "event": "call",
+      "id": 42,
+      "lineno": 13,
+      "method_id": "builder",
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "static": true,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00070191,
+      "event": "return",
+      "id": 43,
+      "parent_id": 42,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=null, invoiceType=null, issueDate=null, dueDate=null, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 44,
+      "lineno": 13,
+      "method_id": "invoiceNumber",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "invoiceNumber",
+          "object_id": 290522404,
+          "value": "FV 3012017"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=null, issueDate=null, dueDate=null, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00010006,
+      "event": "return",
+      "id": 45,
+      "parent_id": 44,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=null, issueDate=null, dueDate=null, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 46,
+      "lineno": 13,
+      "method_id": "invoiceType",
+      "parameters": [
+        {
+          "class": "com.piasecki.domain.InvoiceType",
+          "kind": "req",
+          "name": "invoiceType",
+          "object_id": 768887257,
+          "value": "OUTGOING_INVOICE"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=null, dueDate=null, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00009746,
+      "event": "return",
+      "id": 47,
+      "parent_id": 46,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=null, dueDate=null, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 48,
+      "lineno": 13,
+      "method_id": "issueDate",
+      "parameters": [
+        {
+          "class": "java.time.LocalDate",
+          "kind": "req",
+          "name": "issueDate",
+          "object_id": 1782610601,
+          "value": "2020-01-12"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=null, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 49,
+      "parent_id": 48,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=null, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 50,
+      "lineno": 13,
+      "method_id": "dueDate",
+      "parameters": [
+        {
+          "class": "java.time.LocalDate",
+          "kind": "req",
+          "name": "dueDate",
+          "object_id": 316825050,
+          "value": "2020-01-19"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 51,
+      "parent_id": 50,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=null, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 52,
+      "lineno": 13,
+      "method_id": "amount",
+      "parameters": [
+        {
+          "class": "java.math.BigDecimal",
+          "kind": "req",
+          "name": "amount",
+          "object_id": 1255996581,
+          "value": "100100.0"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 53,
+      "parent_id": 52,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=null, taxRate=null, companyDTO=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 54,
+      "lineno": 13,
+      "method_id": "currency",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "currency",
+          "object_id": 750076308,
+          "value": "PLN"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=null, companyDTO=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 55,
+      "parent_id": 54,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=null, companyDTO=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 56,
+      "lineno": 13,
+      "method_id": "companyDTO",
+      "parameters": [
+        {
+          "class": "com.piasecki.dto.CompanyDTO",
+          "kind": "req",
+          "name": "companyDTO",
+          "object_id": 31960055,
+          "value": "CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101)"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=null, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101))"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 57,
+      "parent_id": 56,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=null, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101))"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 58,
+      "lineno": 13,
+      "method_id": "taxRate",
+      "parameters": [
+        {
+          "class": "java.math.BigDecimal",
+          "kind": "req",
+          "name": "taxRate",
+          "object_id": 750372181,
+          "value": "23.0"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=23.0, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101))"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 59,
+      "parent_id": 58,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=23.0, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101))"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+      "event": "call",
+      "id": 60,
+      "lineno": 13,
+      "method_id": "build",
+      "path": "src/main/java/com/piasecki/dto/InvoiceDTO.java",
+      "receiver": {
+        "class": "com.piasecki.dto.InvoiceDTO$InvoiceDTOBuilder",
+        "object_id": 1353895605,
+        "value": "InvoiceDTO.InvoiceDTOBuilder(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=23.0, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101))"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 61,
+      "parent_id": 60,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO",
+        "object_id": 1380764214,
+        "value": "InvoiceDTO(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=23.0, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101))"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.mapperImpl.InvoiceMapperImpl",
+      "event": "call",
+      "id": 62,
+      "lineno": 19,
+      "method_id": "mapInvoiceDTOtoInvoiceEntity",
+      "parameters": [
+        {
+          "class": "com.piasecki.dto.InvoiceDTO",
+          "kind": "req",
+          "name": "invoiceDTO",
+          "object_id": 1380764214,
+          "value": "InvoiceDTO(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=23.0, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101))"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/mapperImpl/InvoiceMapperImpl.java",
+      "receiver": {
+        "class": "com.piasecki.mapperImpl.InvoiceMapperImpl",
+        "object_id": 1274912314,
+        "value": "com.piasecki.mapperImpl.InvoiceMapperImpl@4bfd9e3a"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Invoice",
+      "event": "call",
+      "id": 63,
+      "lineno": 18,
+      "method_id": "builder",
+      "path": "src/main/java/com/piasecki/domain/Invoice.java",
+      "static": true,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 64,
+      "parent_id": 63,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=null, invoiceType=null, issueDate=null, dueDate=null, taxRate=null, company=null, price=null, user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+      "event": "call",
+      "id": 65,
+      "lineno": 18,
+      "method_id": "invoiceType",
+      "parameters": [
+        {
+          "class": "com.piasecki.domain.InvoiceType",
+          "kind": "req",
+          "name": "invoiceType",
+          "object_id": 768887257,
+          "value": "OUTGOING_INVOICE"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Invoice.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=null, invoiceType=OUTGOING_INVOICE, issueDate=null, dueDate=null, taxRate=null, company=null, price=null, user=null, workers=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00010001,
+      "event": "return",
+      "id": 66,
+      "parent_id": 65,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=null, invoiceType=OUTGOING_INVOICE, issueDate=null, dueDate=null, taxRate=null, company=null, price=null, user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+      "event": "call",
+      "id": 67,
+      "lineno": 18,
+      "method_id": "invoiceNumber",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "invoiceNumber",
+          "object_id": 290522404,
+          "value": "FV 3012017"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Invoice.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=null, dueDate=null, taxRate=null, company=null, price=null, user=null, workers=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 68,
+      "parent_id": 67,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=null, dueDate=null, taxRate=null, company=null, price=null, user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+      "event": "call",
+      "id": 69,
+      "lineno": 18,
+      "method_id": "price",
+      "parameters": [
+        {
+          "class": "com.piasecki.domain.Price",
+          "kind": "req",
+          "name": "price",
+          "object_id": 610699572,
+          "value": "Price(currency=PLN, amount=100100.0)"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Invoice.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=null, dueDate=null, taxRate=null, company=null, price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 70,
+      "parent_id": 69,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=null, dueDate=null, taxRate=null, company=null, price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+      "event": "call",
+      "id": 71,
+      "lineno": 18,
+      "method_id": "issueDate",
+      "parameters": [
+        {
+          "class": "java.time.LocalDate",
+          "kind": "req",
+          "name": "issueDate",
+          "object_id": 1782610601,
+          "value": "2020-01-12"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Invoice.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=null, taxRate=null, company=null, price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 72,
+      "parent_id": 71,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=null, taxRate=null, company=null, price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+      "event": "call",
+      "id": 73,
+      "lineno": 18,
+      "method_id": "dueDate",
+      "parameters": [
+        {
+          "class": "java.time.LocalDate",
+          "kind": "req",
+          "name": "dueDate",
+          "object_id": 316825050,
+          "value": "2020-01-19"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Invoice.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=null, price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 74,
+      "parent_id": 73,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=null, price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.mapperImpl.CompanyMapperImpl",
+      "event": "call",
+      "id": 75,
+      "lineno": 14,
+      "method_id": "mapCompanyDTOtoCompanyEntity",
+      "parameters": [
+        {
+          "class": "com.piasecki.dto.CompanyDTO",
+          "kind": "req",
+          "name": "companyDTO",
+          "object_id": 31960055,
+          "value": "CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101)"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/mapperImpl/CompanyMapperImpl.java",
+      "receiver": {
+        "class": "com.piasecki.mapperImpl.CompanyMapperImpl",
+        "object_id": 1167004501,
+        "value": "com.piasecki.mapperImpl.CompanyMapperImpl@458f1355"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Company",
+      "event": "call",
+      "id": 76,
+      "lineno": 13,
+      "method_id": "builder",
+      "path": "src/main/java/com/piasecki/domain/Company.java",
+      "static": true,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 77,
+      "parent_id": 76,
+      "return_value": {
+        "class": "com.piasecki.domain.Company$CompanyBuilder",
+        "object_id": 1686864010,
+        "value": "Company.CompanyBuilder(id=null, companyName=null, NIP=null, address=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Company$CompanyBuilder",
+      "event": "call",
+      "id": 78,
+      "lineno": 13,
+      "method_id": "companyName",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "companyName",
+          "object_id": 768277755,
+          "value": "FIMA PRAYHIADOWA"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Company.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Company$CompanyBuilder",
+        "object_id": 1686864010,
+        "value": "Company.CompanyBuilder(id=null, companyName=FIMA PRAYHIADOWA, NIP=null, address=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 79,
+      "parent_id": 78,
+      "return_value": {
+        "class": "com.piasecki.domain.Company$CompanyBuilder",
+        "object_id": 1686864010,
+        "value": "Company.CompanyBuilder(id=null, companyName=FIMA PRAYHIADOWA, NIP=null, address=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Company$CompanyBuilder",
+      "event": "call",
+      "id": 80,
+      "lineno": 13,
+      "method_id": "NIP",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "NIP",
+          "object_id": 2055380600,
+          "value": "5552111101"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Company.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Company$CompanyBuilder",
+        "object_id": 1686864010,
+        "value": "Company.CompanyBuilder(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00010009,
+      "event": "return",
+      "id": 81,
+      "parent_id": 80,
+      "return_value": {
+        "class": "com.piasecki.domain.Company$CompanyBuilder",
+        "object_id": 1686864010,
+        "value": "Company.CompanyBuilder(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Address",
+      "event": "call",
+      "id": 82,
+      "lineno": 15,
+      "method_id": "builder",
+      "path": "src/main/java/com/piasecki/domain/Address.java",
+      "static": true,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 83,
+      "parent_id": 82,
+      "return_value": {
+        "class": "com.piasecki.domain.Address$AddressBuilder",
+        "object_id": 1578758099,
+        "value": "Address.AddressBuilder(id=null, street=null, city=null, postalCode=null, user=null, company=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Address$AddressBuilder",
+      "event": "call",
+      "id": 84,
+      "lineno": 15,
+      "method_id": "street",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "street",
+          "object_id": 265213261,
+          "value": "u 1 Lishopada 2243 02-11 Wankzawa"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Address.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Address$AddressBuilder",
+        "object_id": 1578758099,
+        "value": "Address.AddressBuilder(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00010065,
+      "event": "return",
+      "id": 85,
+      "parent_id": 84,
+      "return_value": {
+        "class": "com.piasecki.domain.Address$AddressBuilder",
+        "object_id": 1578758099,
+        "value": "Address.AddressBuilder(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Address$AddressBuilder",
+      "event": "call",
+      "id": 86,
+      "lineno": 15,
+      "method_id": "build",
+      "path": "src/main/java/com/piasecki/domain/Address.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Address$AddressBuilder",
+        "object_id": 1578758099,
+        "value": "Address.AddressBuilder(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 87,
+      "parent_id": 86,
+      "return_value": {
+        "class": "com.piasecki.domain.Address",
+        "object_id": 1471093593,
+        "value": "Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Company$CompanyBuilder",
+      "event": "call",
+      "id": 88,
+      "lineno": 13,
+      "method_id": "address",
+      "parameters": [
+        {
+          "class": "com.piasecki.domain.Address",
+          "kind": "req",
+          "name": "address",
+          "object_id": 1471093593,
+          "value": "Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Company.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Company$CompanyBuilder",
+        "object_id": 1686864010,
+        "value": "Company.CompanyBuilder(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null))"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 89,
+      "parent_id": 88,
+      "return_value": {
+        "class": "com.piasecki.domain.Company$CompanyBuilder",
+        "object_id": 1686864010,
+        "value": "Company.CompanyBuilder(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null))"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Company$CompanyBuilder",
+      "event": "call",
+      "id": 90,
+      "lineno": 13,
+      "method_id": "build",
+      "path": "src/main/java/com/piasecki/domain/Company.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Company$CompanyBuilder",
+        "object_id": 1686864010,
+        "value": "Company.CompanyBuilder(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null))"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 91,
+      "parent_id": 90,
+      "return_value": {
+        "class": "com.piasecki.domain.Company",
+        "object_id": 1118693070,
+        "value": "Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null))"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00040043,
+      "event": "return",
+      "id": 92,
+      "parent_id": 75,
+      "return_value": {
+        "class": "com.piasecki.domain.Company",
+        "object_id": 1118693070,
+        "value": "Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null))"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+      "event": "call",
+      "id": 93,
+      "lineno": 18,
+      "method_id": "company",
+      "parameters": [
+        {
+          "class": "com.piasecki.domain.Company",
+          "kind": "req",
+          "name": "company",
+          "object_id": 1118693070,
+          "value": "Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null))"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/domain/Invoice.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)), price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00009979,
+      "event": "return",
+      "id": 94,
+      "parent_id": 93,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)), price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+      "event": "call",
+      "id": 95,
+      "lineno": 18,
+      "method_id": "build",
+      "path": "src/main/java/com/piasecki/domain/Invoice.java",
+      "receiver": {
+        "class": "com.piasecki.domain.Invoice$InvoiceBuilder",
+        "object_id": 2079720913,
+        "value": "Invoice.InvoiceBuilder(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)), price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 96,
+      "parent_id": 95,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice",
+        "object_id": 645369797,
+        "value": "Invoice(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)), price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00070015,
+      "event": "return",
+      "id": 97,
+      "parent_id": 62,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice",
+        "object_id": 645369797,
+        "value": "Invoice(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)), price=Price(currency=PLN, amount=100100.0), user=null, workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.utils.SecurityUtils",
+      "event": "call",
+      "id": 98,
+      "lineno": 13,
+      "method_id": "getCurrentUser",
+      "parameters": [
+        {
+          "class": "com.piasecki.serviceImpl.UserServiceImpl",
+          "kind": "req",
+          "name": "userService",
+          "object_id": 852737155,
+          "value": "com.piasecki.serviceImpl.UserServiceImpl@32d3bc83"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/utils/SecurityUtils.java",
+      "static": true,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.serviceImpl.UserServiceImpl",
+      "event": "call",
+      "id": 99,
+      "lineno": 29,
+      "method_id": "findByUsername",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "username",
+          "object_id": 528237870,
+          "value": "lenka123"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/serviceImpl/UserServiceImpl.java",
+      "receiver": {
+        "class": "com.piasecki.serviceImpl.UserServiceImpl",
+        "object_id": 852737155,
+        "value": "com.piasecki.serviceImpl.UserServiceImpl@32d3bc83"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.repository.UserRepository",
+      "event": "call",
+      "id": 100,
+      "lineno": -1,
+      "method_id": "findByUsername",
+      "parameters": [
+        {
+          "class": "java.lang.String",
+          "kind": "req",
+          "name": "p0",
+          "object_id": 528237870,
+          "value": "lenka123"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/repository/UserRepository.java",
+      "receiver": {
+        "class": "jdk.proxy2.$Proxy199",
+        "object_id": 1054449353,
+        "value": "org.springframework.data.jpa.repository.support.SimpleJpaRepository@57167602"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "event": "call",
+      "id": 101,
+      "sql_query": {
+        "database_type": "MySQL",
+        "sql": "select u1_0.id,u1_0.nip,u1_0.address_id,u1_0.business_activity,u1_0.is_vat,u1_0.taxation_method,u1_0.password,u1_0.role,u1_0.username from user u1_0 where u1_0.username=?"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 102,
+      "parent_id": 101,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00039982,
+      "event": "return",
+      "id": 103,
+      "parent_id": 100,
+      "return_value": {
+        "class": "java.util.Optional",
+        "object_id": 2120297352,
+        "value": "Optional[User(username=lenka123, NIP=092836212)]"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00039982,
+      "event": "return",
+      "id": 104,
+      "parent_id": 99,
+      "return_value": {
+        "class": "com.piasecki.domain.User",
+        "object_id": 1895821964,
+        "value": "User(username=lenka123, NIP=092836212)"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00039982,
+      "event": "return",
+      "id": 105,
+      "parent_id": 98,
+      "return_value": {
+        "class": "com.piasecki.domain.User",
+        "object_id": 1895821964,
+        "value": "User(username=lenka123, NIP=092836212)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.serviceImpl.InvoiceServiceImpl",
+      "event": "call",
+      "id": 106,
+      "lineno": 30,
+      "method_id": "addInvoice",
+      "parameters": [
+        {
+          "class": "com.piasecki.domain.Invoice",
+          "kind": "req",
+          "name": "invoice",
+          "object_id": 645369797,
+          "value": "Invoice(id=null, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=Company(id=null, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=null, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)), price=Price(currency=PLN, amount=100100.0), user=User(username=lenka123, NIP=092836212), workers=null)"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/serviceImpl/InvoiceServiceImpl.java",
+      "receiver": {
+        "class": "com.piasecki.serviceImpl.InvoiceServiceImpl",
+        "object_id": 1413055366,
+        "value": "com.piasecki.serviceImpl.InvoiceServiceImpl@54398386"
+      },
+      "static": false,
+      "thread_id": 53
+    },
+    {
+      "event": "call",
+      "id": 107,
+      "sql_query": {
+        "database_type": "MySQL",
+        "sql": "insert into address (city,postal_code,street) values (?,?,?)"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 108,
+      "parent_id": 107,
+      "thread_id": 53
+    },
+    {
+      "event": "call",
+      "id": 109,
+      "sql_query": {
+        "database_type": "MySQL",
+        "sql": "insert into company (nip,address_id,company_name) values (?,?,?)"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00010004,
+      "event": "return",
+      "id": 110,
+      "parent_id": 109,
+      "thread_id": 53
+    },
+    {
+      "event": "call",
+      "id": 111,
+      "sql_query": {
+        "database_type": "MySQL",
+        "sql": "insert into invoice (company_id,due_date,invoice_number,invoice_type,issue_date,amount,currency,tax_rate,user_id) values (?,?,?,?,?,?,?,?,?)"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0,
+      "event": "return",
+      "id": 112,
+      "parent_id": 111,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00456305,
+      "event": "return",
+      "id": 113,
+      "parent_id": 106,
+      "return_value": {
+        "class": "com.piasecki.domain.Invoice",
+        "object_id": 645369797,
+        "value": "Invoice(id=5, invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, taxRate=null, company=Company(id=5, companyName=FIMA PRAYHIADOWA, NIP=5552111101, address=Address(id=4, street=u 1 Lishopada 2243 02-11 Wankzawa, city=null, postalCode=null, user=null, company=null)), price=Price(currency=PLN, amount=100100.0), user=User(username=lenka123, NIP=092836212), workers=null)"
+      },
+      "thread_id": 53
+    },
+    {
+      "defined_class": "com.piasecki.serviceImpl.FileServiceImpl",
+      "event": "call",
+      "id": 114,
+      "lineno": 94,
+      "method_id": "deleteFile",
+      "parameters": [
+        {
+          "class": "sun.nio.fs.WindowsPath",
+          "kind": "req",
+          "name": "filePath",
+          "object_id": 1768362028,
+          "value": "C:\\Users\\krpia\\Downloads\\AccountingHelperOfficial\\src\\main\\resources\\static\\PL_Invoice3.png"
+        }
+      ],
+      "path": "src/main/java/com/piasecki/serviceImpl/FileServiceImpl.java",
+      "static": true,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.00009992,
+      "event": "return",
+      "id": 115,
+      "parent_id": 114,
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.399346,
+      "event": "return",
+      "id": 116,
+      "parent_id": 17,
+      "return_value": {
+        "class": "com.piasecki.dto.InvoiceDTO",
+        "object_id": 1380764214,
+        "value": "InvoiceDTO(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=23.0, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101))"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.39954677,
+      "event": "return",
+      "id": 117,
+      "parent_id": 16,
+      "return_value": {
+        "class": "org.springframework.http.ResponseEntity",
+        "object_id": 664691923,
+        "value": "<200 OK OK,InvoiceDTO(invoiceNumber=FV 3012017, invoiceType=OUTGOING_INVOICE, issueDate=2020-01-12, dueDate=2020-01-19, amount=100100.0, currency=PLN, taxRate=23.0, companyDTO=CompanyDTO(companyName=FIMA PRAYHIADOWA, companyAddress=u 1 Lishopada 2243 02-11 Wankzawa, companyNIP=5552111101)),[]>"
+      },
+      "thread_id": 53
+    },
+    {
+      "elapsed": 0.40274796,
+      "event": "return",
+      "http_server_response": {
+        "headers": {
+          "X-Frame-Options": "DENY",
+          "Transfer-Encoding": "chunked",
+          "Keep-Alive": "timeout=60",
+          "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+          "X-Content-Type-Options": "nosniff",
+          "Connection": "keep-alive",
+          "Pragma": "no-cache",
+          "Expires": "0",
+          "X-XSS-Protection": "0",
+          "Date": "Mon, 16 Dec 2024 22:47:17 GMT",
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "id": 118,
+      "parent_id": 15,
+      "thread_id": 53
+    }
+  ],
+  "version": "1.2",
+  "metadata": {
+    "name": "appmap",
+    "app": "AccountingHelperOfficial",
+    "language": {
+      "name": "java",
+      "version": "21.0.4+7-LTS",
+      "engine": "OpenJDK 64-Bit Server VM"
+    },
+    "client": {
+      "name": "appmap-java",
+      "url": "https://github.com/appland/appmap-java"
+    },
+    "recorder": {
+      "name": "remote_recording",
+      "type": "remote"
+    },
+    "recording": {},
+    "git": {
+      "repository": "https://github.com/Piachsecki/AccountingHelper.git",
+      "branch": "feature-branch",
+      "commit": "3eee083d10ab012b37c59936c450a8a4e198c7b7"
+    }
+  },
+  "classMap": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "companyName",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Company.java:13"
+                    },
+                    {
+                      "name": "NIP",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Company.java:13"
+                    },
+                    {
+                      "name": "build",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Company.java:13"
+                    },
+                    {
+                      "name": "address",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Company.java:13"
+                    }
+                  ],
+                  "name": "Company$CompanyBuilder",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "build",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Invoice.java:18"
+                    },
+                    {
+                      "name": "issueDate",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Invoice.java:18"
+                    },
+                    {
+                      "name": "company",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Invoice.java:18"
+                    },
+                    {
+                      "name": "invoiceNumber",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Invoice.java:18"
+                    },
+                    {
+                      "name": "dueDate",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Invoice.java:18"
+                    },
+                    {
+                      "name": "invoiceType",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Invoice.java:18"
+                    },
+                    {
+                      "name": "price",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Invoice.java:18"
+                    }
+                  ],
+                  "name": "Invoice$InvoiceBuilder",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "builder",
+                      "type": "function",
+                      "static": true,
+                      "location": "src/main/java/com/piasecki/domain/Company.java:13"
+                    }
+                  ],
+                  "name": "Company",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "builder",
+                      "type": "function",
+                      "static": true,
+                      "location": "src/main/java/com/piasecki/domain/Invoice.java:18"
+                    }
+                  ],
+                  "name": "Invoice",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "build",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Address.java:15"
+                    },
+                    {
+                      "name": "street",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/domain/Address.java:15"
+                    }
+                  ],
+                  "name": "Address$AddressBuilder",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "builder",
+                      "type": "function",
+                      "static": true,
+                      "location": "src/main/java/com/piasecki/domain/Address.java:15"
+                    }
+                  ],
+                  "name": "Address",
+                  "type": "class"
+                }
+              ],
+              "name": "domain",
+              "type": "package"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "deleteFile",
+                      "type": "function",
+                      "static": true,
+                      "location": "src/main/java/com/piasecki/serviceImpl/FileServiceImpl.java:94"
+                    },
+                    {
+                      "name": "uploadFileToMilo",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/serviceImpl/FileServiceImpl.java:201"
+                    },
+                    {
+                      "name": "uploadInvoiceFile",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/serviceImpl/FileServiceImpl.java:58"
+                    }
+                  ],
+                  "name": "FileServiceImpl",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "loadUserByUsername",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/serviceImpl/UserServiceImpl.java:39"
+                    },
+                    {
+                      "name": "findByUsername",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/serviceImpl/UserServiceImpl.java:29"
+                    },
+                    {
+                      "name": "addUser",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/serviceImpl/UserServiceImpl.java:24"
+                    }
+                  ],
+                  "name": "UserServiceImpl",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "addInvoice",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/serviceImpl/InvoiceServiceImpl.java:30"
+                    }
+                  ],
+                  "name": "InvoiceServiceImpl",
+                  "type": "class"
+                }
+              ],
+              "name": "serviceImpl",
+              "type": "package"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "createUser",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/controller/RegistrationController.java:20"
+                    }
+                  ],
+                  "name": "RegistrationController",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "uploadFile",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/controller/InvoiceController.java:25"
+                    }
+                  ],
+                  "name": "InvoiceController",
+                  "type": "class"
+                }
+              ],
+              "name": "controller",
+              "type": "package"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "build",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/CompanyDTO.java:7"
+                    },
+                    {
+                      "name": "companyNIP",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/CompanyDTO.java:7"
+                    },
+                    {
+                      "name": "companyName",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/CompanyDTO.java:7"
+                    },
+                    {
+                      "name": "companyAddress",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/CompanyDTO.java:7"
+                    }
+                  ],
+                  "name": "CompanyDTO$CompanyDTOBuilder",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "builder",
+                      "type": "function",
+                      "static": true,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    }
+                  ],
+                  "name": "InvoiceDTO",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "dueDate",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    },
+                    {
+                      "name": "currency",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    },
+                    {
+                      "name": "amount",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    },
+                    {
+                      "name": "invoiceNumber",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    },
+                    {
+                      "name": "invoiceType",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    },
+                    {
+                      "name": "build",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    },
+                    {
+                      "name": "issueDate",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    },
+                    {
+                      "name": "taxRate",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    },
+                    {
+                      "name": "companyDTO",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/dto/InvoiceDTO.java:13"
+                    }
+                  ],
+                  "name": "InvoiceDTO$InvoiceDTOBuilder",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "builder",
+                      "type": "function",
+                      "static": true,
+                      "location": "src/main/java/com/piasecki/dto/CompanyDTO.java:7"
+                    }
+                  ],
+                  "name": "CompanyDTO",
+                  "type": "class"
+                }
+              ],
+              "name": "dto",
+              "type": "package"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "getCurrentUser",
+                      "type": "function",
+                      "static": true,
+                      "location": "src/main/java/com/piasecki/utils/SecurityUtils.java:13"
+                    }
+                  ],
+                  "name": "SecurityUtils",
+                  "type": "class"
+                }
+              ],
+              "name": "utils",
+              "type": "package"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "mapCompanyDTOtoCompanyEntity",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/mapperImpl/CompanyMapperImpl.java:14"
+                    }
+                  ],
+                  "name": "CompanyMapperImpl",
+                  "type": "class"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "mapInvoiceDTOtoInvoiceEntity",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/mapperImpl/InvoiceMapperImpl.java:19"
+                    }
+                  ],
+                  "name": "InvoiceMapperImpl",
+                  "type": "class"
+                }
+              ],
+              "name": "mapperImpl",
+              "type": "package"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "findByUsername",
+                      "type": "function",
+                      "static": false,
+                      "location": "src/main/java/com/piasecki/repository/UserRepository.java:-1"
+                    }
+                  ],
+                  "name": "UserRepository",
+                  "type": "class"
+                }
+              ],
+              "name": "repository",
+              "type": "package"
+            }
+          ],
+          "name": "piasecki",
+          "type": "package"
+        }
+      ],
+      "name": "com",
+      "type": "package"
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "POST /register/user"
+        },
+        {
+          "type": "route",
+          "name": "POST /api/invoice/uploadFile"
+        }
+      ]
+    },
+    {
+      "type": "database",
+      "name": "Database",
+      "children": [
+        {
+          "type": "query",
+          "name": "insert into user (nip,address_id,business_activity,is_vat,taxation_method,password,role,username) values (?,?,?,?,?,?,?,?)"
+        },
+        {
+          "type": "query",
+          "name": "select u1_0.id,u1_0.nip,u1_0.address_id,u1_0.business_activity,u1_0.is_vat,u1_0.taxation_method,u1_0.password,u1_0.role,u1_0.username from user u1_0 where u1_0.username=?"
+        },
+        {
+          "type": "query",
+          "name": "insert into address (city,postal_code,street) values (?,?,?)"
+        },
+        {
+          "type": "query",
+          "name": "insert into company (nip,address_id,company_name) values (?,?,?)"
+        },
+        {
+          "type": "query",
+          "name": "insert into invoice (company_id,due_date,invoice_number,invoice_type,issue_date,amount,currency,tax_rate,user_id) values (?,?,?,?,?,?,?,?,?)"
+        }
+      ]
+    },
+    {
+      "type": "external-service",
+      "name": "api.mindee.net",
+      "children": [
+        {
+          "type": "external-route",
+          "name": "POST https://api.mindee.net/v1/products/mindee/invoices/v4/predict_async"
+        },
+        {
+          "type": "external-route",
+          "name": "GET https://api.mindee.net/v1/products/mindee/invoices/v4/documents/queue/c3c0b8da-f5cc-4025-a20e-4ff679af2d8b"
+        }
+      ]
+    }
+  ]
+}

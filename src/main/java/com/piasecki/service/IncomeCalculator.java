@@ -7,5 +7,5 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface IncomeCalculator {
-    BigDecimal calculateIncome(List<Invoice> invoices, List<Receipt> receipts);
+    BigDecimal calculateIncome();
 }
