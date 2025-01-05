@@ -1,26 +1,25 @@
 package com.piasecki.serviceImpl;
 
+import com.piasecki.domain.BusinessActivity;
 import com.piasecki.domain.Entrepreneurship;
 import com.piasecki.service.IncomeCalculator;
+import com.piasecki.service.RevenueCalculator;
 import com.piasecki.service.TaxCalculationStrategy;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Data
-@NoArgsConstructor
 public class LumpSumTaxCalculationStrategy implements TaxCalculationStrategy {
-    private IncomeCalculator incomeCalculator;
-    private BigDecimal amount;
-
+    private final RevenueCalculator revenueCalculator;
+    private BusinessActivity businessActivity;
     @Override
     public BigDecimal calculateIncomeTax() {
-        return null;
+        BigDecimal revenue = revenueCalculator.calculateRevenue();
+
+        return revenue.multiply(BigDecimal.valueOf(businessActivity.getPercentage()));
     }
 }

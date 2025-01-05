@@ -2,23 +2,30 @@ package com.piasecki.serviceImpl;
 
 import com.piasecki.domain.Entrepreneurship;
 import com.piasecki.domain.TaxationMethod;
+import com.piasecki.service.IncomeCalculator;
+import com.piasecki.service.RevenueCalculator;
 import com.piasecki.service.TaxCalculationStrategy;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Component
+@RequiredArgsConstructor
 public class TaxCalculatedStrategyFactory {
+    private final IncomeCalculator incomeCalculator;
+    private final RevenueCalculator revenueCalculator;
 
-    public static TaxCalculationStrategy create(Entrepreneurship entrepreneurship) {
+    public TaxCalculationStrategy create(Entrepreneurship entrepreneurship) {
         TaxationMethod taxationMethod = entrepreneurship.getTaxationMethod();
         if (TaxationMethod.FLAT_TAX.equals(taxationMethod)) {
-            FlatTaxCalculationStrategy flatTaxCalculationStrategy = new FlatTaxCalculationStrategy();
-            return flatTaxCalculationStrategy;
+            return new FlatTaxCalculationStrategy(incomeCalculator);
         } else if (TaxationMethod.TAX_SCALE.equals(taxationMethod)) {
-            ScaleTaxCalculationStrategy scaleTaxCalculationStrategy = new ScaleTaxCalculationStrategy();
-            return scaleTaxCalculationStrategy;
-
-        }else {
-            LumpSumTaxCalculationStrategy lumpSumTaxCalculationStrategy = new LumpSumTaxCalculationStrategy();
+            return new ScaleTaxCalculationStrategy(incomeCalculator);
+        } else {
+            LumpSumTaxCalculationStrategy lumpSumTaxCalculationStrategy = new LumpSumTaxCalculationStrategy(revenueCalculator);
+            lumpSumTaxCalculationStrategy.setBusinessActivity(entrepreneurship.getBusinessActivity());
             return lumpSumTaxCalculationStrategy;
         }
     }

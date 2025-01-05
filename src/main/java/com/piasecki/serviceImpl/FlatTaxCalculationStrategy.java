@@ -12,12 +12,11 @@ import java.math.BigDecimal;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class FlatTaxCalculationStrategy implements TaxCalculationStrategy {
     private IncomeCalculator incomeCalculator;
     @Override
     public BigDecimal calculateIncomeTax() {
-        return null;
+        return BigDecimal.valueOf(0.19).multiply(incomeCalculator.calculateIncome());
     }
 }
