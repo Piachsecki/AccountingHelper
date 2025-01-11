@@ -26,5 +26,6 @@ public class IncomeCalculatorImpl implements IncomeCalculator {
         return revenue.subtract(businessExpenses);
     }
 
-
 }
+
+

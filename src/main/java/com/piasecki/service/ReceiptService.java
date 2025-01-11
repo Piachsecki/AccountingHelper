@@ -12,3 +12,8 @@ public interface ReceiptService {
     void deleteReceipt(Long id);
     List<Receipt> getAllReceipts();
 }
+
+
+/*
+SERWIS I JEGO IMPLEMENTACJA MUSI BYC W TYM SAMYM PAKIECIE!!!!!
+ */

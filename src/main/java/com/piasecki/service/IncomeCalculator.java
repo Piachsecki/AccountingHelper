@@ -9,3 +9,6 @@ import java.util.List;
 public interface IncomeCalculator {
     BigDecimal calculateIncome();
 }
+/*
+SERWIS I JEGO IMPLEMENTACJA MUSI BYC W TYM SAMYM PAKIECIE!!!!!
+ */

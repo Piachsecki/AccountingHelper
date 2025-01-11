@@ -1,23 +1,31 @@
 package com.piasecki.serviceImpl;
 
-import com.piasecki.domain.Invoice;
-import com.piasecki.domain.InvoiceType;
-import com.piasecki.domain.User;
+import com.piasecki.domain.*;
 import com.piasecki.repository.InvoiceRepository;
 import com.piasecki.service.InvoiceService;
+import com.piasecki.service.NotificationService;
 import com.piasecki.service.UserService;
 import com.piasecki.utils.SecurityUtils;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class InvoiceServiceImpl implements InvoiceService {
     private InvoiceRepository invoiceRepository;
     private UserService userService;
+
+    private NotificationService notificationService;
 
     @Override
     public Invoice getInvoice(long id) {
@@ -55,5 +63,46 @@ public class InvoiceServiceImpl implements InvoiceService {
     public List<Invoice> getAllIncomeInvoices() {
         User currentUser = SecurityUtils.getCurrentUser(userService);
         return invoiceRepository.findAllByUserIdAndInvoiceType(currentUser.getId(), InvoiceType.INCOME_INVOICE);
+    }
+
+    @Override
+//    @Scheduled(cron = "0 0 9 * * Mon")
+    @Scheduled(cron = "0 * * * * *")
+    @Transactional
+    public void checkIfShouldBeNotified() {
+        log.info("checkIfShouldBeNotified()");
+
+        List<Long> allUserIds = userService.findAllIds();
+        for (Long userId : allUserIds) {
+            List<Invoice> usersInvoicesToPay = invoiceRepository
+                    .findAllByUserIdAndInvoiceType(
+                            userId,
+                            InvoiceType.OUTGOING_INVOICE);
+            for (Invoice invoiceToNotify : usersInvoicesToPay) {
+                System.out.println("invoice to notify: " + invoiceToNotify.getInvoiceNumber());
+                if (LocalDate.now().plusDays(3).equals(invoiceToNotify.getDueDate()) ||
+                        LocalDate.now().plusDays(3).isAfter(invoiceToNotify.getDueDate())
+
+                ){
+                    try {
+
+                        //invoiceNUmber musi byc unique i stworzyc wlasny blad do wyrzucania i obsluga go na miekko
+                        notificationService.addNotification(Notification.builder()
+                                .invoiceNumber(invoiceToNotify.getInvoiceNumber())
+                                .sendStatus(SEND_STATUS.PENDING)
+                                .userId(userId)
+                                .build());
+                        log.info("Saved notification with invoiceNumber: [{}]", invoiceToNotify.getInvoiceNumber());
+                    } catch (IllegalArgumentException e) {
+                        log.error("[{}] : Addinng the notification with the same invoice number: [{}]", e.getMessage(), invoiceToNotify.getInvoiceNumber());
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public Invoice getInvoiceByInvoiceNumber(String invoiceNumber) {
+        return invoiceRepository.findInvoiceByInvoiceNumber(invoiceNumber);
     }
 }

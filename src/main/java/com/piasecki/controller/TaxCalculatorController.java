@@ -21,6 +21,10 @@ public class TaxCalculatorController {
     @GetMapping(value = "/calculate")
     public ResponseEntity<BigDecimal> calculateMyTax() {
         //TODO NIE WIEM GDZIE MAM WYCIAGNAC typ opodatkowania po ktorym bedziemy obliczac ten podatek
+
+
+        //taxService powinien miec w sobie UserService i SecurityUtils. Serwisy springowe, powinny nie byc przekazywane przez metode statyczne
+
         BigDecimal tax = taxCalculatorService.calculateTax(SecurityUtils.getCurrentUser(userService).getEntrepreneurship());
         return ResponseEntity.ok(tax);
     }

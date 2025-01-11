@@ -14,6 +14,10 @@ public interface InvoiceService {
     void updateInvoice(long id, Invoice invoice);
     List<Invoice> getAllCostInvoices();
     List<Invoice> getAllIncomeInvoices();
-
+    void checkIfShouldBeNotified();
+    Invoice getInvoiceByInvoiceNumber (String invoiceNumber);
 
 }
+/*
+SERWIS I JEGO IMPLEMENTACJA MUSI BYC W TYM SAMYM PAKIECIE!!!!!
+ */

@@ -9,3 +9,8 @@ public interface OCRService {
     InvoiceDTO ocrInvoice(Path path);
     ReceiptDTO ocrReceipt(Path path);
 }
+
+
+/*
+SERWIS I JEGO IMPLEMENTACJA MUSI BYC W TYM SAMYM PAKIECIE!!!!!
+ */

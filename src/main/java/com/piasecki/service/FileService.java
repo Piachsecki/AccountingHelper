@@ -11,3 +11,8 @@ public interface FileService {
 
     ReceiptDTO uploadReceiptFile(MultipartFile file);
 }
+
+
+/*
+SERWIS I JEGO IMPLEMENTACJA MUSI BYC W TYM SAMYM PAKIECIE!!!!!
+ */

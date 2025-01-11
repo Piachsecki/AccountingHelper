@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         } else {
             return user.get();
         }
+    }
+
+    @Override
+    public List<Long> findAllIds() {
+        return userRepository.findAllIds();
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override

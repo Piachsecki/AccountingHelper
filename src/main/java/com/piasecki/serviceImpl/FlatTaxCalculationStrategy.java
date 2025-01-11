@@ -20,3 +20,11 @@ public class FlatTaxCalculationStrategy implements TaxCalculationStrategy {
         return BigDecimal.valueOf(0.19).multiply(incomeCalculator.calculateIncome());
     }
 }
+
+
+/*
+   Faktorka by dzialala, i nie byloby nulla w incomeCalculator, gdybys uzyl tutaj uzyl RequiredARgsConstructor
+
+   Wtedy on wstrzykiwal nulla w miejsce incomeCalculatora A GDYBYS uzyl RequiredArgsConstructor i POLE MUSI BYC FINALNE,
+   TO WTEDY wstrzyknal by normalnie serwis
+ */
