@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
     List<Invoice> findAllByUserId(Long customerId);
     List<Invoice> findAllByUserIdAndInvoiceType(Long user_id, InvoiceType invoiceType);
-    Invoice findInvoiceByInvoiceNumber(String invoiceNumber);
+    Optional<Invoice> findInvoiceByInvoiceNumber(String invoiceNumber);
 }

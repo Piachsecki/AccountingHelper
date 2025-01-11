@@ -1,6 +1,6 @@
 package com.piasecki.domain;
 
-public enum SEND_STATUS {
+public enum SendStatus {
     PENDING,
     SENT,
     ERROR

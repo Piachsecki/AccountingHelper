@@ -1,22 +1,21 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.piasecki.domain.Receipt;
 import com.piasecki.domain.User;
 import com.piasecki.repository.ReceiptRepository;
-import com.piasecki.service.ReceiptService;
-import com.piasecki.service.UserService;
 import com.piasecki.utils.SecurityUtils;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class ReceiptServiceImpl implements ReceiptService {
-    private ReceiptRepository receiptRepository;
-    private UserService userService;
+    private final ReceiptRepository receiptRepository;
+    private final UserService userService;
 
     @Override
     public Receipt getReceipt(Long id) {

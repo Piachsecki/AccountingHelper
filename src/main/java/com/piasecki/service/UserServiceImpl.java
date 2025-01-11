@@ -1,8 +1,7 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.piasecki.domain.User;
 import com.piasecki.repository.UserRepository;
-import com.piasecki.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

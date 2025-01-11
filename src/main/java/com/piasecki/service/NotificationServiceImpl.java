@@ -1,28 +1,19 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 
-import com.piasecki.domain.Invoice;
 import com.piasecki.domain.Notification;
-import com.piasecki.domain.SEND_STATUS;
-import com.piasecki.domain.User;
+import com.piasecki.domain.SendStatus;
 import com.piasecki.repository.NotificationRepository;
-import com.piasecki.service.InvoiceService;
-import com.piasecki.service.NotificationService;
-import com.piasecki.service.UserService;
-import com.piasecki.utils.SecurityUtils;
-import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -40,14 +31,8 @@ public class NotificationServiceImpl implements NotificationService {
     private String sender;
 
 
-
-
-
-//    @Scheduled(cron = "0 * * * * *")
     private void sendEmail(Notification pendingNotification, String email){
         log.info("Email sent to: [{}]\nThis is a reminder that < 3 days are left to pay the current invoice: [{}]", email, pendingNotification.getInvoiceNumber());
-        log.info("sendEmail()");
-
         try {
 
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
@@ -57,7 +42,7 @@ public class NotificationServiceImpl implements NotificationService {
             simpleMailMessage.setText("This is a reminder that < 3 days are left to pay the current invoice: [" + pendingNotification.getInvoiceNumber() + "]");
             mailSender.send(simpleMailMessage);
 
-            pendingNotification.setSendStatus(SEND_STATUS.SENT);
+            pendingNotification.setSendStatus(SendStatus.SENT);
             updateNotification(pendingNotification);
             log.info("Email sent successfully and notification has been updated to SENT [{}, {}]",
                     pendingNotification.getInvoiceNumber(),
@@ -65,9 +50,7 @@ public class NotificationServiceImpl implements NotificationService {
             );
 
         }catch (MailException exception){
-//            exception.printStackTrace();
-
-            pendingNotification.setSendStatus(SEND_STATUS.ERROR);
+            pendingNotification.setSendStatus(SendStatus.ERROR);
             updateNotification(pendingNotification);
             log.error("Exception while sending email [{}]", exception.getMessage());
         }
@@ -78,6 +61,7 @@ public class NotificationServiceImpl implements NotificationService {
     public void addNotification(Notification notification) {
         boolean exists = notificationRepository.existsByInvoiceNumber(notification.getInvoiceNumber());
         if (exists) {
+            log.error("Wanted to add a notification that already exists! [{}]", notification.getInvoiceNumber());
             throw new IllegalArgumentException("Notification with the same invoice number already exists: " + notification.getInvoiceNumber());
         }
         notificationRepository.save(notification);
@@ -89,7 +73,7 @@ public class NotificationServiceImpl implements NotificationService {
     @Scheduled(cron = "0 * * * * *")
     public void checkIfThereIsNotificationToSend() {
         log.info("checkIfThereIsNotificationToSend()");
-        List<Notification> allBySendStatus = notificationRepository.getAllBySendStatus(SEND_STATUS.PENDING);
+        List<Notification> allBySendStatus = notificationRepository.getAllBySendStatus(SendStatus.PENDING);
         for (Notification pendingNotification : allBySendStatus) {
             System.out.println("pendingNotification = " + pendingNotification.getId());
             String usersEmail = userService.findUserById(pendingNotification.getUserId()).getEmail();
@@ -105,7 +89,7 @@ public class NotificationServiceImpl implements NotificationService {
  */
     @Override
     public void deleteAllSentNotifications() {
-        notificationRepository.deleteAllBySendStatus(SEND_STATUS.SENT);
+        notificationRepository.deleteAllBySendStatus(SendStatus.SENT);
     }
 
     @Override

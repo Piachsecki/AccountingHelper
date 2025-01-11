@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.pl.NIP;
+
+import javax.validation.constraints.Pattern;
 
 @Entity
 @AllArgsConstructor
@@ -18,6 +21,12 @@ public class Company {
 
     private String companyName;
 
+
+    /*
+    Niestety nie moze zostac uzyte, bo OCR moze nie znalezc danego NIPU ze zdjecia
+     */
+//    @NIP(message = "Invalid NIP number. Please provide a valid Polish VAT identification number!")
+//    @Column(unique = true)
     private String NIP;
 
     @OneToOne(cascade = CascadeType.ALL)

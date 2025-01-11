@@ -1,21 +1,19 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.piasecki.domain.Invoice;
 import com.piasecki.domain.Receipt;
-import com.piasecki.service.BusinessExpensesCalculator;
-import com.piasecki.service.InvoiceService;
-import com.piasecki.service.ReceiptService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BusinessExpensesCalculatorImpl implements BusinessExpensesCalculator {
-    private InvoiceService invoiceService;
-    private ReceiptService receiptService;
+    private final InvoiceService invoiceService;
+    private final ReceiptService receiptService;
 
     @Override
     public BigDecimal calculateBusinessExpenses() {

@@ -1,18 +1,17 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.piasecki.domain.Invoice;
-import com.piasecki.service.InvoiceService;
-import com.piasecki.service.RevenueCalculator;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class RevenueCalculatorImpl implements RevenueCalculator {
-    private InvoiceService invoiceService;
+    private final InvoiceService invoiceService;
     @Override
     public BigDecimal calculateRevenue() {
         BigDecimal revenue = BigDecimal.ZERO;

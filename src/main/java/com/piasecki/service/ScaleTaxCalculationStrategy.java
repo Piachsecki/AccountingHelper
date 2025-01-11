@@ -1,13 +1,9 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 
-import com.piasecki.domain.Entrepreneurship;
-import com.piasecki.service.IncomeCalculator;
-import com.piasecki.service.TaxCalculationStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,9 +11,9 @@ import java.math.BigDecimal;
 //TODO tutaj wzorzec projektowy strategii ale wlasnie jak ?
 @Service
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ScaleTaxCalculationStrategy implements TaxCalculationStrategy {
-    private IncomeCalculator incomeCalculator;
+    private final IncomeCalculator incomeCalculator;
 
 
 

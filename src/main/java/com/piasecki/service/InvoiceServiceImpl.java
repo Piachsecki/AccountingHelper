@@ -1,29 +1,26 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.piasecki.domain.*;
+import com.piasecki.exception.InvoiceNotFoundException;
 import com.piasecki.repository.InvoiceRepository;
-import com.piasecki.service.InvoiceService;
-import com.piasecki.service.NotificationService;
-import com.piasecki.service.UserService;
 import com.piasecki.utils.SecurityUtils;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
+import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class InvoiceServiceImpl implements InvoiceService {
-    private InvoiceRepository invoiceRepository;
-    private UserService userService;
+    private final InvoiceRepository invoiceRepository;
+    private final UserService userService;
 
     private NotificationService notificationService;
 
@@ -85,11 +82,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 
                 ){
                     try {
-
-                        //invoiceNUmber musi byc unique i stworzyc wlasny blad do wyrzucania i obsluga go na miekko
                         notificationService.addNotification(Notification.builder()
                                 .invoiceNumber(invoiceToNotify.getInvoiceNumber())
-                                .sendStatus(SEND_STATUS.PENDING)
+                                .sendStatus(SendStatus.PENDING)
                                 .userId(userId)
                                 .build());
                         log.info("Saved notification with invoiceNumber: [{}]", invoiceToNotify.getInvoiceNumber());
@@ -103,6 +98,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Invoice getInvoiceByInvoiceNumber(String invoiceNumber) {
-        return invoiceRepository.findInvoiceByInvoiceNumber(invoiceNumber);
+        Optional<Invoice> invoiceByInvoiceNumber = invoiceRepository.findInvoiceByInvoiceNumber(invoiceNumber);
+        if (invoiceByInvoiceNumber.isPresent()) {
+            return invoiceByInvoiceNumber.get();
+        }
+        log.error("There is no invoice with the specified id: [{}]", invoiceNumber);
+        throw new InvoiceNotFoundException(invoiceNumber);
     }
 }

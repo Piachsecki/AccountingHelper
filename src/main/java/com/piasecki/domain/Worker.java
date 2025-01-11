@@ -24,8 +24,10 @@ public class Worker {
 
     private String surname;
 
+    @Column(unique = true, nullable = false)
     private String bankAccountNumber;
 
+    @Column(nullable = false)
     private BigDecimal salary;
 
 

@@ -1,8 +1,7 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.piasecki.dto.InvoiceDTO;
 import com.piasecki.dto.ReceiptDTO;
-import com.piasecki.service.OCRService;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;

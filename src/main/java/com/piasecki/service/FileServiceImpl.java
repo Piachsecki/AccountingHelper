@@ -1,4 +1,4 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.mindee.MindeeClient;
 import com.mindee.input.LocalInputSource;
@@ -12,16 +12,15 @@ import com.piasecki.dto.InvoiceDTO;
 import com.piasecki.dto.ReceiptDTO;
 import com.piasecki.mapper.InvoiceMapper;
 import com.piasecki.mapper.ReceiptMapper;
-import com.piasecki.service.FileService;
-import com.piasecki.service.InvoiceService;
-import com.piasecki.service.ReceiptService;
-import com.piasecki.service.UserService;
 import com.piasecki.utils.SecurityUtils;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -41,29 +41,32 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Slf4j
 public class FileServiceImpl implements FileService {
 
-    private MinioClient minioClient;
-    private InvoiceMapper invoiceMapper;
-    private ReceiptMapper receiptMapper;
-    private ReceiptService receiptService;
-    private MindeeClient mindeeClient;
-    private InvoiceService invoiceService;
-    private UserService userService;
+    private final MinioClient minioClient;
+    private final InvoiceMapper invoiceMapper;
+    private final ReceiptMapper receiptMapper;
+    private final ReceiptService receiptService;
+    private final MindeeClient mindeeClient;
+    private final InvoiceService invoiceService;
+    private final UserService userService;
 
 
 
-    //TODO tutaj zwrocic InvoiceDTO do usera czy Invoice
+
     @Override
+    @Transactional
     public InvoiceDTO uploadInvoiceFile(MultipartFile file) {
+        Path destination = null;
         try {
             if (file.isEmpty()) {
                 throw new RuntimeException("File is empty");
             }
             uploadFileToMilo("invoices", file.getOriginalFilename(), file.getInputStream(), file.getContentType());
 
-            Path destination = addFileToProjectPath(file);
+            destination = addFileToProjectPath(file);
 
             InvoiceDTO invoiceDTO = ocrInvoiceFileToObject(destination);
 
@@ -72,29 +75,26 @@ public class FileServiceImpl implements FileService {
             User currentUser = SecurityUtils.getCurrentUser(userService);
             invoice.setUser(currentUser);
 
-//            System.out.println(invoice.toString());
-//            System.out.println(invoice.toString());
-//            System.out.println(invoice.toString());
-
-            //
-            // teraz do tego invoice dodac usera ze spring security contextu
-            Invoice addedInvoice = invoiceService.addInvoice(invoice);
-//            System.out.println(addedInvoice.toString());
-
-
-
+            invoiceService.addInvoice(invoice);
             deleteFile(destination);
 
             return invoiceDTO;
-        } catch (IOException e) {
-            throw new RuntimeException("Store exception");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | InterruptedException e) {
+            if (destination != null) {
+                deleteFile(destination);
+            }
+            log.error("The file already exists under this path: [{}]", e.getMessage());
+            throw new RuntimeException("Error during file upload and processing", e);
         }
     }
 
-    public static void deleteFile(Path filePath) throws IOException {
-        Files.deleteIfExists(filePath); // Deletes file if it ex8ists
+    public static void deleteFile(Path filePath){
+        try {
+            Files.deleteIfExists(filePath); // Deletes file if it ex8ists
+        } catch (IOException e) {
+            log.error("Couldn't delete file under path: [{}]", filePath.toString());
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -186,13 +186,14 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public ReceiptDTO uploadReceiptFile(MultipartFile file) {
+        Path destination = null;
         try {
             if (file.isEmpty()) {
                 throw new RuntimeException("File is empty");
             }
             uploadFileToMilo("receipts", file.getOriginalFilename(), file.getInputStream(), file.getContentType());
 
-            Path destination = addFileToProjectPath(file);
+            destination = addFileToProjectPath(file);
 
             ReceiptDTO receiptDTO= ocrReceiptFileToObject(destination);
 
@@ -200,15 +201,18 @@ public class FileServiceImpl implements FileService {
             User currentUser = SecurityUtils.getCurrentUser(userService);
             receipt.setUser(currentUser);
 
-            Receipt addedReceipt = receiptService.addReceipt(receipt);
+            receiptService.addReceipt(receipt);
 
 
             deleteFile(destination);
 
             return receiptDTO;
-
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Store exception");
+            if (destination != null) {
+                deleteFile(destination);
+            }
+            log.error("The file already exists under this path: [{}]", e.getMessage());
+            throw new RuntimeException("Error during file upload and processing", e);
         }
     }
 

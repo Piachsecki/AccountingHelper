@@ -18,11 +18,14 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String invoiceNumber;
 
     @Enumerated(EnumType.STRING)
-    private SEND_STATUS sendStatus= SEND_STATUS.PENDING;
+    @Column(nullable = false)
+    private SendStatus sendStatus= SendStatus.PENDING;
 
+    @Column(nullable = false)
     private Long userId;
 
 }

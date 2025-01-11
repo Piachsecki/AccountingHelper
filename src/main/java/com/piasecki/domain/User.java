@@ -2,6 +2,7 @@ package com.piasecki.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.validator.constraints.pl.NIP;
 
 import javax.validation.constraints.Pattern;
 import java.util.List;
@@ -29,7 +30,6 @@ public class User {
     @Embedded
     private Entrepreneurship entrepreneurship;
 
-//    private BusinessActivity businessActivity;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Invoice> invoices;
@@ -37,8 +37,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Receipt> receipts;
 
-    //    @Validate()
-    @Pattern(regexp = "\\b\\d{10}\\b|\\b\\d{3}-\\d{2}-\\d{2}-\\d{3}\\b")
+    @NIP(message = "Invalid NIP number. Please provide a valid Polish VAT identification number!")
+    @Column(unique = true)
     @ToString.Include
     private String NIP;
 

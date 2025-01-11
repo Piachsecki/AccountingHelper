@@ -1,32 +1,33 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.piasecki.constants.CurrencyConstants;
 import com.piasecki.domain.Invoice;
 import com.piasecki.domain.Receipt;
 import com.piasecki.domain.User;
-import com.piasecki.service.InvoiceService;
-import com.piasecki.service.ReceiptService;
-import com.piasecki.service.UserService;
-import com.piasecki.service.VatCalculator;
 import com.piasecki.utils.SecurityUtils;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
+@Slf4j
 public class VatCalculatorImpl implements VatCalculator {
-    private InvoiceService invoiceService;
-    private UserService userService;
-    private ReceiptService receiptService;
+    private final InvoiceService invoiceService;
+    private final UserService userService;
+    private final ReceiptService receiptService;
 
     @Override
     public BigDecimal calculateVat() {
         User currentUser = SecurityUtils.getCurrentUser(userService);
         if (!currentUser.getEntrepreneurship().isVat()){
+            log.error("Current user: [{}] is not VAT payer. isVat: [{}]", currentUser.getUsername(), currentUser.getEntrepreneurship().isVat());
             throw new RuntimeException("You are not a VAT payer!");
         }
 
@@ -52,9 +53,18 @@ public class VatCalculatorImpl implements VatCalculator {
         return vatToPay;
     }
 
+    //TODO Tutaj trzeba zaimplementowac klase CurrencyConverter i uzywac jej w Revenue/Income/VatCalculatorach.
     private BigDecimal vatToClaim(List<Invoice> allCostInvoices, List<Receipt> allReceipts) {
         BigDecimal vatToClaim = BigDecimal.ZERO;
         for (Invoice costInvoice : allCostInvoices) {
+            if(Objects.isNull(costInvoice.getPrice().getAmount()) || Objects.isNull(costInvoice.getTaxRate())){
+                log.error("Tried to add an invoice with amount [{}] or taxRate [{}] set as null.",
+                        costInvoice.getPrice().getAmount(),
+                        costInvoice.getTaxRate());
+                continue;
+            }
+
+            //Przyjmuje, poki co, ze invoice sa w pln
             vatToClaim = vatToClaim.add(costInvoice.getPrice().getAmount().multiply(costInvoice.getTaxRate()));
         }
 

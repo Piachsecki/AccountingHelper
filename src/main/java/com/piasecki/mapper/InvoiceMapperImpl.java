@@ -1,11 +1,9 @@
-package com.piasecki.mapperImpl;
+package com.piasecki.mapper;
 
 import com.piasecki.domain.Invoice;
 import com.piasecki.domain.Price;
 import com.piasecki.dto.CompanyDTO;
 import com.piasecki.dto.InvoiceDTO;
-import com.piasecki.mapper.CompanyMapper;
-import com.piasecki.mapper.InvoiceMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

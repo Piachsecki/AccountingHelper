@@ -24,15 +24,6 @@ public class ReceiptController {
         ReceiptDTO receiptDTO = fileService.uploadReceiptFile(file);
         return ResponseEntity.ok(receiptDTO);
     }
-//    public ReceiptController(ReceiptService receiptService) {
-//        this.receiptService = receiptService;
-//    }
-//
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Receipt createReceipt(@RequestBody Receipt receipt) {
-//        return receiptService.saveReceipt(receipt);
-//    }
 
     @PostMapping(value = "/addReceipt")
     public ResponseEntity<Receipt> addReceipt(@RequestBody Receipt receipt) {

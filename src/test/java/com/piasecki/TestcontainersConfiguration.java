@@ -74,7 +74,7 @@ public class TestcontainersConfiguration {
 
         invoiceService.addInvoice(invoice);
 
-        int size = invoiceService.getInvoicesByCustomerId(user.getId()).size();
+        int size = invoiceService.getAllCostInvoices().size();
         Assertions.assertEquals(1, size);
 
 

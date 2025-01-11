@@ -1,23 +1,17 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 
-import com.piasecki.domain.Invoice;
-import com.piasecki.domain.Receipt;
-import com.piasecki.service.*;
-import com.piasecki.utils.SecurityUtils;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class IncomeCalculatorImpl implements IncomeCalculator {
-    private RevenueCalculator revenueCalculator;
-    private BusinessExpensesCalculator businessExpensesCalculator;
+    private final RevenueCalculator revenueCalculator;
+    private final BusinessExpensesCalculator businessExpensesCalculator;
 
     @Override
     public BigDecimal calculateIncome() {

@@ -1,10 +1,6 @@
-package com.piasecki.serviceImpl;
+package com.piasecki.service;
 
 import com.piasecki.domain.BusinessActivity;
-import com.piasecki.domain.Entrepreneurship;
-import com.piasecki.service.IncomeCalculator;
-import com.piasecki.service.RevenueCalculator;
-import com.piasecki.service.TaxCalculationStrategy;
 import lombok.*;
 import org.springframework.stereotype.Service;
 

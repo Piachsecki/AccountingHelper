@@ -1,11 +1,7 @@
 package com.piasecki.controller;
 
 
-import com.piasecki.security.SecurityConfig;
-import com.piasecki.service.TaxCalculationStrategy;
-import com.piasecki.service.UserService;
-import com.piasecki.serviceImpl.TaxCalculatorService;
-import com.piasecki.utils.SecurityUtils;
+import com.piasecki.service.TaxCalculatorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +13,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class TaxCalculatorController {
     private TaxCalculatorService taxCalculatorService;
-    private UserService userService;
     @GetMapping(value = "/calculate")
     public ResponseEntity<BigDecimal> calculateMyTax() {
-        //TODO NIE WIEM GDZIE MAM WYCIAGNAC typ opodatkowania po ktorym bedziemy obliczac ten podatek
-
-
-        //taxService powinien miec w sobie UserService i SecurityUtils. Serwisy springowe, powinny nie byc przekazywane przez metode statyczne
-
-        BigDecimal tax = taxCalculatorService.calculateTax(SecurityUtils.getCurrentUser(userService).getEntrepreneurship());
+        BigDecimal tax = taxCalculatorService.calculateTax();
         return ResponseEntity.ok(tax);
     }
 

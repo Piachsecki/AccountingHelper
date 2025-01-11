@@ -1,9 +1,8 @@
-package com.piasecki.mapperImpl;
+package com.piasecki.mapper;
 
 import com.piasecki.domain.Price;
 import com.piasecki.domain.Receipt;
 import com.piasecki.dto.ReceiptDTO;
-import com.piasecki.mapper.ReceiptMapper;
 import org.springframework.stereotype.Service;
 
 @Service

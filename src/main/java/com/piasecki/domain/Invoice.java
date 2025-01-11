@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,13 +21,19 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String invoiceNumber;
-    @Enumerated(EnumType.STRING)
-    private InvoiceType invoiceType;
-    private LocalDate issueDate;
-    private LocalDate dueDate;
-    private BigDecimal taxRate;
 
+    @Column(nullable = false)
+    private String invoiceNumber;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private InvoiceType invoiceType;
+
+    private LocalDate issueDate;
+
+    private LocalDate dueDate;
+
+    private BigDecimal taxRate;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Company company;
