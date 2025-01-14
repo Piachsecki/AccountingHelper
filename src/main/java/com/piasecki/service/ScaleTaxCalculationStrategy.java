@@ -20,9 +20,14 @@ public class ScaleTaxCalculationStrategy implements TaxCalculationStrategy {
     @Override
     public BigDecimal calculateIncomeTax() {
         BigDecimal income = incomeCalculator.calculateIncome();
-        if (income.compareTo(BigDecimal.valueOf(10000)) >= 0) {
-            return income.multiply(BigDecimal.valueOf(0.32));
+        if (income.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
         }
-        return income.multiply(BigDecimal.valueOf(0.17));
+
+        BigDecimal taxRate = (income.compareTo(BigDecimal.valueOf(10000)) >= 0)
+                ? BigDecimal.valueOf(0.32)
+                : BigDecimal.valueOf(0.17);
+
+        return income.multiply(taxRate).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 }

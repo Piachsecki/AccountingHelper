@@ -15,7 +15,9 @@ public class LumpSumTaxCalculationStrategy implements TaxCalculationStrategy {
     @Override
     public BigDecimal calculateIncomeTax() {
         BigDecimal revenue = revenueCalculator.calculateRevenue();
-
+        if (revenue.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
+        }
         return revenue.multiply(BigDecimal.valueOf(businessActivity.getPercentage()));
     }
 }

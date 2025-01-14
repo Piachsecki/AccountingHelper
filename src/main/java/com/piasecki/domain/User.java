@@ -1,6 +1,7 @@
 package com.piasecki.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.pl.NIP;
 
@@ -37,10 +38,17 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Receipt> receipts;
 
+
+    /*
+    Dlaczego nie dziala z  nullable = false, a jak damy @NotNull to nagle validator dziala
+     */
     @NIP(message = "Invalid NIP number. Please provide a valid Polish VAT identification number!")
-    @Column(unique = true)
+    @NotNull(message = "NIP must not be null")
+    @Column(unique = true, nullable = false)
     @ToString.Include
     private String NIP;
+
+
 
 
     @OneToOne(cascade = CascadeType.ALL)

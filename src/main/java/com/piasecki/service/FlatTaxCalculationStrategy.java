@@ -14,7 +14,11 @@ public class FlatTaxCalculationStrategy implements TaxCalculationStrategy {
     private final IncomeCalculator incomeCalculator;
     @Override
     public BigDecimal calculateIncomeTax() {
-        return BigDecimal.valueOf(0.19).multiply(incomeCalculator.calculateIncome());
+        BigDecimal income = incomeCalculator.calculateIncome();
+        if (income.compareTo(BigDecimal.ZERO) <= 0) {
+            return BigDecimal.ZERO;
+        }
+        return BigDecimal.valueOf(0.19).multiply(income);
     }
 }
 

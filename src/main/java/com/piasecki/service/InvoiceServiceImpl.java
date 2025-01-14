@@ -22,7 +22,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final UserService userService;
 
-    private NotificationService notificationService;
+    private final NotificationService notificationService;
 
     @Override
     public Invoice getInvoice(long id) {
