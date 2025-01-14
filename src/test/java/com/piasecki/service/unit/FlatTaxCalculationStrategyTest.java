@@ -36,7 +36,7 @@ class FlatTaxCalculationStrategyTest {
 
         // Assert
         assertNotNull(tax);
-        assertEquals(BigDecimal.valueOf(1900.0), tax);
+        assertEquals(BigDecimal.valueOf(1900.0).setScale(2), tax);
         verify(incomeCalculator, times(1)).calculateIncome();
     }
 

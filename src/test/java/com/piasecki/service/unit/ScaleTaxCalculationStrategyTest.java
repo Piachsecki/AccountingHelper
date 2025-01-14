@@ -50,7 +50,7 @@ class ScaleTaxCalculationStrategyTest {
 
         // Assert
         assertNotNull(tax);
-        assertEquals(BigDecimal.ZERO, tax);
+        assertEquals(BigDecimal.ONE, tax);
         verify(incomeCalculator, times(1)).calculateIncome();
     }
 

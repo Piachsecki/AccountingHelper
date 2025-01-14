@@ -1,6 +1,7 @@
 package com.piasecki.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.pl.NIP;
@@ -21,10 +22,15 @@ public class User {
     private Long id;
 
     @ToString.Include
+    @NotNull(message = "Username must not be null")
     private String username;
 
-    private String password;
+    @NotNull(message = "Email must not be null")
+    @Email(message = "Invalid email format")
     private String email;
+
+    @NotNull(message = "Password must not be null")
+    private String password;
 
     private String role;
 
@@ -45,7 +51,7 @@ public class User {
     @NIP(message = "Invalid NIP number. Please provide a valid Polish VAT identification number!")
     @NotNull(message = "NIP must not be null")
     @Column(unique = true, nullable = false)
-    @ToString.Include
+//    @ToString.Include
     private String NIP;
 
 
