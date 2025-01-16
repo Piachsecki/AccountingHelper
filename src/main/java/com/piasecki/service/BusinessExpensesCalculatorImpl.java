@@ -2,6 +2,7 @@ package com.piasecki.service;
 
 import com.piasecki.domain.Invoice;
 import com.piasecki.domain.Receipt;
+import com.piasecki.domain.Worker;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 public class BusinessExpensesCalculatorImpl implements BusinessExpensesCalculator {
     private final InvoiceService invoiceService;
     private final ReceiptService receiptService;
+    private final WorkerService workerService;
 
     @Override
     public BigDecimal calculateBusinessExpenses(LocalDate specifiedDate) {
@@ -30,7 +32,11 @@ public class BusinessExpensesCalculatorImpl implements BusinessExpensesCalculato
             businessExpenses = businessExpenses.add(receipt.getPrice().getAmount());
         }
 
-        return businessExpenses;
+        List<Worker> allWorkers = workerService.getAllWorkers();
+        for (Worker worker : allWorkers) {
+            businessExpenses = businessExpenses.add(worker.getSalary());
+        }
+        return businessExpenses.negate();
 
     }
 }

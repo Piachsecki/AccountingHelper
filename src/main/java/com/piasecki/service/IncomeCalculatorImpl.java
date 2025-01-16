@@ -18,7 +18,7 @@ public class IncomeCalculatorImpl implements IncomeCalculator {
     public BigDecimal calculateIncome(LocalDate specifiedDate) {
         BigDecimal revenue = revenueCalculator.calculateRevenue(specifiedDate);
         BigDecimal businessExpenses = businessExpensesCalculator.calculateBusinessExpenses(specifiedDate);
-        return revenue.subtract(businessExpenses);
+        return revenue.add(businessExpenses);
     }
 
 }

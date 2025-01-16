@@ -36,6 +36,7 @@ public class SecurityConfig {
                             authorizeRequests.requestMatchers("/admin/**").hasRole("ADMIN");
                             authorizeRequests.requestMatchers("/user/**").hasRole("USER");
                             authorizeRequests.requestMatchers("/home", "/register/**", "/login").permitAll();
+                            authorizeRequests.requestMatchers("/api/user/delete", "/register/**", "/login").permitAll();
                             authorizeRequests.anyRequest().authenticated();
                         })
                 .formLogin(form -> {
