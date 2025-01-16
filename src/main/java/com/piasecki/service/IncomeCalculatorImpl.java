@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @Service
@@ -14,9 +15,9 @@ public class IncomeCalculatorImpl implements IncomeCalculator {
     private final BusinessExpensesCalculator businessExpensesCalculator;
 
     @Override
-    public BigDecimal calculateIncome() {
-        BigDecimal revenue = revenueCalculator.calculateRevenue();
-        BigDecimal businessExpenses = businessExpensesCalculator.calculateBusinessExpenses();
+    public BigDecimal calculateIncome(LocalDate specifiedDate) {
+        BigDecimal revenue = revenueCalculator.calculateRevenue(specifiedDate);
+        BigDecimal businessExpenses = businessExpensesCalculator.calculateBusinessExpenses(specifiedDate);
         return revenue.subtract(businessExpenses);
     }
 

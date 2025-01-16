@@ -3,6 +3,7 @@ package com.piasecki.service;
 import com.piasecki.domain.Invoice;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -17,6 +18,9 @@ public interface InvoiceService {
     void checkIfShouldBeNotified();
     Invoice getInvoiceByInvoiceNumber (String invoiceNumber);
 
+    List<Invoice> getAllIncomeInvoicesByDate(LocalDate date);
+
+    List<Invoice> getAllCostInvoicesByDate(LocalDate date);
 }
 /*
 SERWIS I JEGO IMPLEMENTACJA MUSI BYC W TYM SAMYM PAKIECIE!!!!!

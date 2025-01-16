@@ -11,6 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -24,16 +27,16 @@ public class VatCalculatorImpl implements VatCalculator {
     private final ReceiptService receiptService;
 
     @Override
-    public BigDecimal calculateVat() {
+    public BigDecimal calculateVat(LocalDate specifiedDate) {
         User currentUser = SecurityUtils.getCurrentUser(userService);
         if (!currentUser.getEntrepreneurship().isVat()){
             log.error("Current user: [{}] is not VAT payer. isVat: [{}]", currentUser.getUsername(), currentUser.getEntrepreneurship().isVat());
             throw new RuntimeException("You are not a VAT payer!");
         }
 
-        List<Invoice> allIncomeInvoices = invoiceService.getAllIncomeInvoices();
-        List<Invoice> allCostInvoices = invoiceService.getAllCostInvoices();
-        List<Receipt> allReceipts = receiptService.getAllReceipts()
+        List<Invoice> allIncomeInvoices = invoiceService.getAllIncomeInvoicesByDate(specifiedDate);
+        List<Invoice> allCostInvoices = invoiceService.getAllCostInvoicesByDate(specifiedDate);
+        List<Receipt> allReceipts = receiptService.getAllReceiptsByDate(specifiedDate)
                 .stream()
                 .filter(Receipt::isNip)
                 .collect(Collectors.toList());

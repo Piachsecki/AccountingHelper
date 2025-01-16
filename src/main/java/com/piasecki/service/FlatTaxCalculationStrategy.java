@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -13,8 +14,8 @@ import java.math.BigDecimal;
 public class FlatTaxCalculationStrategy implements TaxCalculationStrategy {
     private final IncomeCalculator incomeCalculator;
     @Override
-    public BigDecimal calculateIncomeTax() {
-        BigDecimal income = incomeCalculator.calculateIncome();
+    public BigDecimal calculateIncomeTax(LocalDate specifiedDate) {
+        BigDecimal income = incomeCalculator.calculateIncome(specifiedDate);
         if (income.compareTo(BigDecimal.ZERO) <= 0) {
             return BigDecimal.ZERO;
         }

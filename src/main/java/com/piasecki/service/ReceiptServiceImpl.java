@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -36,5 +37,12 @@ public class ReceiptServiceImpl implements ReceiptService {
     public List<Receipt> getAllReceipts() {
         User currentUser = SecurityUtils.getCurrentUser(userService);
         return receiptRepository.findAllByUserId(currentUser.getId());
+    }
+
+    @Override
+    public List<Receipt> getAllReceiptsByDate(LocalDate date) {
+        User currentUser = SecurityUtils.getCurrentUser(userService);
+        LocalDate deadlineMonth = LocalDate.of(date.getYear(), date.getMonth().getValue() + 1, 1);
+        return receiptRepository.findAllByUserIdAndAndDateBetween(currentUser.getId(), date, deadlineMonth);
     }
 }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 //TODO tutaj wzorzec projektowy strategii ale wlasnie jak ?
 @Service
@@ -18,8 +19,8 @@ public class ScaleTaxCalculationStrategy implements TaxCalculationStrategy {
 
 
     @Override
-    public BigDecimal calculateIncomeTax() {
-        BigDecimal income = incomeCalculator.calculateIncome();
+    public BigDecimal calculateIncomeTax(LocalDate specifiedDate) {
+        BigDecimal income = incomeCalculator.calculateIncome(specifiedDate);
         if (income.compareTo(BigDecimal.ZERO) <= 0) {
             return BigDecimal.ZERO;
         }

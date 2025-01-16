@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -13,9 +14,9 @@ import java.util.List;
 public class RevenueCalculatorImpl implements RevenueCalculator {
     private final InvoiceService invoiceService;
     @Override
-    public BigDecimal calculateRevenue() {
+    public BigDecimal calculateRevenue(LocalDate specifiedDate) {
         BigDecimal revenue = BigDecimal.ZERO;
-        List<Invoice> allIncomeInvoices = invoiceService.getAllIncomeInvoices();
+        List<Invoice> allIncomeInvoices = invoiceService.getAllIncomeInvoicesByDate(specifiedDate);
         for (Invoice incomeInvoice : allIncomeInvoices) {
             revenue = revenue.add(incomeInvoice.getPrice().getAmount());
         }

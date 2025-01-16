@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -15,10 +16,10 @@ public class TaxCalculatorService {
     private final UserService userService;
 
 
-    public BigDecimal calculateTax() {
+    public BigDecimal calculateTax(LocalDate specifiedDate) {
         Entrepreneurship entrepreneurship = SecurityUtils.getCurrentUser(userService).getEntrepreneurship();
         TaxCalculationStrategy taxCalculationStrategy = taxCalculatedStrategyFactory.create(entrepreneurship);
-        return taxCalculationStrategy.calculateIncomeTax();
+        return taxCalculationStrategy.calculateIncomeTax(specifiedDate);
 
 
         //tutaj pozniej jak juz stworzymy te strategie - to nie musza jzu byc springowymi beanami - scopePrototype

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,15 +17,15 @@ public class BusinessExpensesCalculatorImpl implements BusinessExpensesCalculato
     private final ReceiptService receiptService;
 
     @Override
-    public BigDecimal calculateBusinessExpenses() {
+    public BigDecimal calculateBusinessExpenses(LocalDate specifiedDate) {
         BigDecimal businessExpenses = BigDecimal.ZERO;
 
-        List<Invoice> allCostInvoices = invoiceService.getAllCostInvoices();
+        List<Invoice> allCostInvoices = invoiceService.getAllCostInvoicesByDate(specifiedDate);
         for (Invoice costInvoice : allCostInvoices) {
             businessExpenses = businessExpenses.add(costInvoice.getPrice().getAmount());
         }
 
-        List<Receipt> allReceipts = receiptService.getAllReceipts();
+        List<Receipt> allReceipts = receiptService.getAllReceiptsByDate(specifiedDate);
         for (Receipt receipt : allReceipts) {
             businessExpenses = businessExpenses.add(receipt.getPrice().getAmount());
         }

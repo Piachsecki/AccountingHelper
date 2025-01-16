@@ -105,4 +105,18 @@ public class InvoiceServiceImpl implements InvoiceService {
         log.error("There is no invoice with the specified id: [{}]", invoiceNumber);
         throw new InvoiceNotFoundException(invoiceNumber);
     }
+
+    @Override
+    public List<Invoice> getAllIncomeInvoicesByDate(LocalDate date) {
+        User currentUser = SecurityUtils.getCurrentUser(userService);
+        LocalDate deadlineMonth = LocalDate.of(date.getYear(), date.getMonth().getValue() + 1, 1);
+        return invoiceRepository.findAllByUserIdAndInvoiceTypeAndIssueDateBetween(currentUser.getId(), InvoiceType.INCOME_INVOICE, date, deadlineMonth);
+    }
+
+    @Override
+    public List<Invoice> getAllCostInvoicesByDate(LocalDate date) {
+        User currentUser = SecurityUtils.getCurrentUser(userService);
+        LocalDate deadlineMonth = LocalDate.of(date.getYear(), date.getMonth().getValue() + 1, 1);
+        return invoiceRepository.findAllByUserIdAndInvoiceTypeAndIssueDateBetween(currentUser.getId(), InvoiceType.OUTGOING_INVOICE, date, deadlineMonth);
+    }
 }
