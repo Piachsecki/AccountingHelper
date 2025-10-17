@@ -1,0 +1,16 @@
+name: test CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: print hello
+        run: |
+          echo "Hello world"
